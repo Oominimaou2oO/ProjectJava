@@ -42,13 +42,12 @@ public class Controleur {
 			System.out.println("Ajout de l'étage X à desservir pour l'ascenseur Y.");
 			System.out.println("Ajout de requêtes internes terminées !");
 			
-			
 			System.out.println("Ajout de requêtes externes");
 			System.out.println("Etage X :");
 			System.out.println("Direction du déplacement (H[AUT] | B[AS]) (Laisser vide pour passer à la suite) :");
 			System.out.println("Appel d'un ascenseur à l'étage X, direction Y.");
 			System.out.println("Ajout de requêtes externes terminées !");
-			//Affichage de l'état
+			// Affichage de l'état
 			for(inputString = inputScanner.nextLine(); !inputString.isEmpty(); inputString = inputScanner.nextLine()) {
 		        System.out.println(inputString);
 		    }

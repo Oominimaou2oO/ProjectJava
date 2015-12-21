@@ -3,7 +3,7 @@ package ascenseur.traitement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ascenseur {	
+public class Ascenseur {
 	private int etat = Constantes.IMMOBILE_FERME;
 	private int etage = 0;
 	private boolean bloquer = false;
@@ -69,5 +69,39 @@ public class Ascenseur {
 				break;
 			}				
 		}
+		//Statisfaire les requete de l'étage actuel
+	}
+	
+	public String toString() {
+		String affichage;
+		switch(etat) {
+		case Constantes.IMMOBILE_FERME:
+			affichage = "[|]";
+			break;
+		case Constantes.IMMOBILE_OUVERT:
+			affichage = "[ ]";
+			break;
+		case Constantes.MOUVEMENT_VERS_LE_BAS:
+			affichage = "[v]";
+			break;
+		case Constantes.MOUVEMENT_VERS_LE_HAUT:
+			affichage = "[^]";
+			break;
+		default:
+			affichage = "[|]";
+		}
+		return affichage;
+	}
+
+	public int getEtage() {
+		return this.etage;
+	}
+	
+	public int getEtat() {
+		return this.etat;
+	}
+
+	public boolean isBloqued() {
+		return this.bloquer;
 	}
 }

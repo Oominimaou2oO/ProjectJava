@@ -12,4 +12,19 @@ public class RequeteExterne extends Requete {
 	public int getEtage() {
 		return this.etageDemandeur;
 	}
+	
+	public int getDirection() {
+		return direction;
+	}
+	
+	public void choisirAscenseur(Ascenseur ascenseur) {
+		ascenseur.ajouterRequete(this);
+	}
+	
+	public String toString() {
+		if(direction == Constantes.MOUVEMENT_VERS_LE_BAS) {
+			return "[BAS]";
+		}
+		return "[HAUT]";
+	}
 }
