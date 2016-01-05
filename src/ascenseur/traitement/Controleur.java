@@ -25,7 +25,7 @@ public class Controleur {
 	
 	public void choisirAscenseur() {
 		// Distribuer les requetes aux ascenseurs
-		// Pour le moment, fait de manière arbitraires
+		// Pour le moment, fait de maniÃ¨re arbitraires
 		for(int i = 0; i< requetesExternes.size(); ++i) {
 			ascenseurs.get(i).ajouterRequete(requetesExternes.get(i));
 			//requetesExternes.removeFirst();
@@ -36,42 +36,38 @@ public class Controleur {
 	public static void main(String[] args) {
 		String inputString;
 		Scanner inputScanner = new Scanner(System.in);
-		try {
-			System.out.println("Initialisation");
-			
-			System.out.println("Nombre d'étages à desservir :");
-			Controleur.getInstance().etages = inputScanner.nextInt();					
-			System.out.println("Nombre d'étages fixé à " + Controleur.getInstance().etages + ".");
-			
-			System.out.println("Nombre d'ascenseurs :");
-			int nombreAscenseurs = inputScanner.nextInt();
-			System.out.println("Création de " + nombreAscenseurs + " ascenseurs...");
-			for(int i = 0; i < nombreAscenseurs; ++i) {
-				Controleur.getInstance().ascenseurs.add(new Ascenseur());
-			}			
-			System.out.println("Création terminé !");
+		System.out.println("Initialisation");
 
-			System.out.println("Ajout de requêtes internes");
-			System.out.println("Ascenseur X");
-			System.out.println("Etat : ETAT");
-			System.out.println("Etage à desservir (Laisser vide pour passer à la suite) :");
-		
-			System.out.println("Ajout de l'étage X à desservir pour l'ascenseur Y.");
-			System.out.println("Ajout de requêtes internes terminées !");
-			
-			System.out.println("Ajout de requêtes externes");
-			System.out.println("Etage X :");
-			System.out.println("Direction du déplacement (H[AUT] | B[AS]) (Laisser vide pour passer à la suite) :");
-			System.out.println("Appel d'un ascenseur à l'étage X, direction Y.");
-			System.out.println("Ajout de requêtes externes terminées !");
-			// Affichage de l'état
-			for(inputString = inputScanner.nextLine(); !inputString.isEmpty(); inputString = inputScanner.nextLine()) {
-		        System.out.println(inputString);
-		    }
+		System.out.println("Nombre d'Ã©tages Ã  desservir :");
+		Controleur.getInstance().etages = inputScanner.nextInt();
+		System.out.println("Nombre d'Ã©tages fixÃ© Ã  " + Controleur.getInstance().etages + ".");
+
+		System.out.println("Nombre d'ascenseurs :");
+		int nombreAscenseurs = inputScanner.nextInt();
+		System.out.println("CrÃ©ation de " + nombreAscenseurs + " ascenseurs...");
+		for(int i = 0; i < nombreAscenseurs; ++i) {
+			Controleur.getInstance().ascenseurs.add(new Ascenseur());
 		}
-		finally {
-			inputScanner.close();
+		System.out.println("CrÃ©ation terminÃ© !");
+
+		System.out.println("Ajout de requÃªtes internes");
+		System.out.println("Ascenseur X");
+		System.out.println("Etat : ETAT");
+		System.out.println("Etage Ã  desservir (Laisser vide pour passer Ã  la suite) :");
+
+		System.out.println("Ajout de l'Ã©tage X Ã  desservir pour l'ascenseur Y.");
+		System.out.println("Ajout de requÃªtes internes terminÃ©es !");
+
+		System.out.println("Ajout de requÃªtes externes");
+		System.out.println("Etage X :");
+		System.out.println("Direction du dÃ©placement (H[AUT] | B[AS]) (Laisser vide pour passer Ã  la suite) :");
+		System.out.println("Appel d'un ascenseur Ã  l'Ã©tage X, direction Y.");
+		System.out.println("Ajout de requÃªtes externes terminÃ©es !");
+		// Affichage de l'Ã©tat
+		for(inputString = inputScanner.nextLine(); !inputString.isEmpty(); inputString = inputScanner.nextLine()) {
+			System.out.println(inputString);
 		}
+		inputScanner.close();
 		System.out.println("Exit");
 	} // main()
 }
