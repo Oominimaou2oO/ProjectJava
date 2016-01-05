@@ -1,5 +1,6 @@
 package ascenseur.traitement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,17 +8,31 @@ public class Controleur {
 	private static Controleur instance = new Controleur();
 	
 	private int etages;
-	private List<Ascenseur> ascenseurs = new ArrayList<Ascenseur>();
+	private List<Ascenseur> ascenseurs = new ArrayList<>();
+	private LinkedList<Requete> requetesExternes = new LinkedList<>();
 	
-	private Controleur() {}
+	private Controleur() {} // Constructor
 	
 	public static Controleur getInstance() {
-		return Controleur.instance;
-	}
+		return instance;
+	} // getInstance()
+	
+	public void creerRequeteExterne(int etage, int direction) {
+		requetesExternes.add(new RequeteExterne(etage, direction));
+	} // creerRequeteExterne()
+	
+	public void choisirAscenseur() {
+		// Distribuer les requetes aux ascenseurs
+		// Pour le moment, fait de manière arbitraires
+		for(int i = 0; i< requetesExternes.size(); ++i) {
+			ascenseurs.get(i).ajouterRequete(requetesExternes.get(i));
+			//requetesExternes.removeFirst();
+		}
+		requetesExternes.clear();
+	} // choisirAscenseur()
 	
 	public static void main(String[] args) {
 		String inputString;
-		int inputInt;
 		Scanner inputScanner = new Scanner(System.in);
 		try {
 			System.out.println("Initialisation");
@@ -56,5 +71,5 @@ public class Controleur {
 			inputScanner.close();
 		}
 		System.out.println("Exit");
-	}
+	} // main()
 }

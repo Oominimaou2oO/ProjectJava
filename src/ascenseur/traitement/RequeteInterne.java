@@ -1,13 +1,9 @@
 package ascenseur.traitement;
 
 public class RequeteInterne extends Requete {
-	private int etageDemande;
 	
-	public RequeteInterne(int etageDemande) {
-		this.etageDemande = etageDemande;
-	}
+	public RequeteInterne(int etage) {
+		super(etage);
+	} // Constructor
 	
-	public int getEtage() {
-		return this.etageDemande;
-	}
 }

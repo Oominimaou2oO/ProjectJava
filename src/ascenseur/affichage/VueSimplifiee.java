@@ -68,13 +68,13 @@ public class VueSimplifiee {
 			System.out.println(affichage);
 		}
 		
-	} //getVue1(nombreEtages, ascenseurs, requetesExternes, listRequetesInternes) 
+	} //getVue1() 
 	
 	public void getVue2() {
 		// Boutons des panneaux de controle (bloquage aussi)
 		
 		// Boutons de chaque palier
-	}
+	} // getVue2()
 	
 	public static void main(String[] args) {
 		VueSimplifiee vs = new VueSimplifiee();
@@ -103,5 +103,5 @@ public class VueSimplifiee {
 		listRequetesInternes.put(ascenseurs.get(2), requetesInternes);		
 
 		vs.getVue1(5, ascenseurs, requetesExternes, listRequetesInternes);
-	}
+	} // main()
 }
