@@ -8,7 +8,7 @@ public class Ascenseur {
 	private int etage;
 	private boolean bloquer;
 	
-	private List<Requete> requetes = new ArrayList<Requete>();	
+	private List<Requete> requetes = new ArrayList<>();
 	
 	public Ascenseur() {
 		this.etat = Constantes.IMMOBILE_FERMER;
@@ -82,7 +82,7 @@ public class Ascenseur {
 				break;
 			}				
 		}
-		// To Do : Satisfaire les requete de l'étage actuel
+		// To Do : Satisfaire les requete de l'Ã©tage actuel
 	} // action()
 	
 	public String toString() {

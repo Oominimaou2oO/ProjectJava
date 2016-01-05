@@ -8,7 +8,7 @@ public class AscenseurAvecAugmentationVitesse extends DecorateurAscenseur {
 	
 	@Override
 	public String getOptionLibelle() {
-		return "Vitesse de déplacement augmentée";
+		return "Vitesse de dÃ©placement augmentÃ©e";
 	} // getOptionLibelle()
 
 }

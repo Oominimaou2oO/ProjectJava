@@ -15,12 +15,13 @@ public class VueSimplifiee {
 			List<RequeteExterne> requetesExternes, Map<Ascenseur, List<RequeteInterne>> listRequetesInternes) {
 				
 		String affichage= "VUE EN COUPE";
-		List<RequeteInterne> requetesInternes = new ArrayList<RequeteInterne>();
+		List<RequeteInterne> requetesInternes = new ArrayList<>();
+
 		for(int i = 0; i < 4 + 11 * ascenseurs.size(); ++i) {
 			affichage += " ";
 		}
 		
-		System.out.println(affichage + "Boutons activÈs");
+		System.out.println(affichage + "Boutons activ√©s");
 		for(int i = nombreEtages; i >= 0; --i) {
 			affichage = "Etage " + i;
 			for(int j = 0; j < 10  - Integer.toString(i).length(); ++j) {
@@ -42,8 +43,8 @@ public class VueSimplifiee {
 			System.out.println(affichage);
 		}
 		
-		System.out.println("\nPanneaux de controle des ascenseurs (Bouton activÈ) : ");
-		List<Integer> etagesPressed = new ArrayList<Integer>();
+		System.out.println("\nPanneaux de controle des ascenseurs (Bouton activ√©) : ");
+		List<Integer> etagesPressed = new ArrayList<>();
 		Ascenseur ascenseur;
 		for(int i = 0; i < ascenseurs.size(); ++ i) {
 			etagesPressed.clear();
@@ -64,7 +65,7 @@ public class VueSimplifiee {
 					affichage += " " + j + "  ";
 			}
 			if(ascenseur.isBloqued())
-				affichage += "BloquÈ!";
+				affichage += "Bloqu√© !";
 			System.out.println(affichage);
 		}
 		
@@ -78,11 +79,11 @@ public class VueSimplifiee {
 	
 	public static void main(String[] args) {
 		VueSimplifiee vs = new VueSimplifiee();
-		List<Ascenseur> ascenseurs = new ArrayList<Ascenseur>();
-		List<RequeteExterne> requetesExternes = new ArrayList<RequeteExterne>();
-		List<RequeteInterne> requetesInternes = new ArrayList<RequeteInterne>();
+		List<Ascenseur> ascenseurs = new ArrayList<>();
+		List<RequeteExterne> requetesExternes = new ArrayList<>();
+		List<RequeteInterne> requetesInternes = new ArrayList<>();
 		
-		Map<Ascenseur, List<RequeteInterne>> listRequetesInternes = new HashMap<Ascenseur, List<RequeteInterne>>();
+		Map<Ascenseur, List<RequeteInterne>> listRequetesInternes = new HashMap<>();
 		
 		ascenseurs.add(new Ascenseur());
 		ascenseurs.add(new Ascenseur());
@@ -95,7 +96,7 @@ public class VueSimplifiee {
 		requetesInternes.add(new RequeteInterne(4));
 		listRequetesInternes.put(ascenseurs.get(0), requetesInternes);
 		
-		requetesInternes = new ArrayList<RequeteInterne>();
+		requetesInternes = new ArrayList<>();
 		
 		requetesInternes.add(new RequeteInterne(1));
 		requetesInternes.add(new RequeteInterne(3));

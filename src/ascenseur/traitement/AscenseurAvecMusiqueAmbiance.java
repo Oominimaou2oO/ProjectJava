@@ -8,7 +8,7 @@ public class AscenseurAvecMusiqueAmbiance extends DecorateurAscenseur {
 	
 	@Override
 	public String getOptionLibelle() {
-		return "Musique d'ambiance lors des déplacements de l'ascenseur";
+		return "Musique d'ambiance lors des dÃ©placements de l'ascenseur";
 	} // getOptionLibelle()
 
 }
