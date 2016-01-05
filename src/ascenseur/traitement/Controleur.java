@@ -7,9 +7,10 @@ import java.util.Scanner;
 public class Controleur {
 	private static Controleur instance = new Controleur();
 	
-	private int etages;
 	private List<Ascenseur> ascenseurs = new ArrayList<>();
 	private LinkedList<Requete> requetesExternes = new LinkedList<>();
+	
+	private int etages;
 	
 	private Controleur() {} // Constructor
 	
