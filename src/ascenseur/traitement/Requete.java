@@ -1,5 +1,13 @@
 package ascenseur.traitement;
 
 public abstract class Requete {
-	public abstract int getEtage();
+	protected int etage;
+	
+	protected Requete(int etage) {
+		this.etage = etage;
+	} // Constructor
+	
+	public int getEtage() {
+		return this.etage;
+	} // getEtage()
 }

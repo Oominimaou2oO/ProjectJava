@@ -1,30 +1,20 @@
 package ascenseur.traitement;
 
 public class RequeteExterne extends Requete {
-	private int etageDemandeur;
 	private int direction;
 	
-	public RequeteExterne(int etageDemandeur, int direction) {
-		this.etageDemandeur = etageDemandeur;
+	public RequeteExterne(int etage, int direction) {
+		super(etage);
 		this.direction = direction;
-	}
-	
-	public int getEtage() {
-		return this.etageDemandeur;
-	}
+	} // Constructor
 	
 	public int getDirection() {
 		return direction;
-	}
-	
-	public void choisirAscenseur(Ascenseur ascenseur) {
-		ascenseur.ajouterRequete(this);
-	}
+	} // getDirection()
 	
 	public String toString() {
-		if(direction == Constantes.MOUVEMENT_VERS_LE_BAS) {
+		if(direction == Constantes.MOUVEMENT_VERS_LE_BAS)
 			return "[BAS]";
-		}
 		return "[HAUT]";
-	}
+	} // toString()
 }
