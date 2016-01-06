@@ -72,7 +72,7 @@ public class Ascenseur {
                 }
                 break;
         }
-        // To Do : Satisfaire les requete de l'étage actuel
+        // To Do : Satisfaire les requetes de l'étage actuel
     } // action()
 
     public String toString() {

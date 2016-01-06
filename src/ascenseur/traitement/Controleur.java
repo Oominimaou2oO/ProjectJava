@@ -30,26 +30,24 @@ public class Controleur {
     } // creerRequeteExterne()
 
     public void choisirAscenseur() {
-        // Distribuer les requetes aux ascenseurs
         // Pour le moment, fait de manière arbitraires
         for (int i = 0; i < requetesExternes.size(); ++i) {
-            ascenseurs.get(i).ajouterRequete(requetesExternes.get(i));
-            //requetesExternes.removeFirst();
+            ascenseurs.get(i).ajouterRequete(requetesExternes.getFirst());
+            requetesExternes.removeFirst();
         }
-        requetesExternes.clear();
     } // choisirAscenseur()
 
     public LinkedList<RequeteExterne> getRequetesExternes() {
         return requetesExternes;
-    }
+    } // getRequetesExternes()
 
     public int getEtages() {
         return etages;
-    }
+    } // getEtages()
 
     public List<Ascenseur> getAscenseurs() {
         return ascenseurs;
-    }
+    } //getAscenseurs()
 
     public static void main(String[] args) {
         String inputString;
