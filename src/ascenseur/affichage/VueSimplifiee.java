@@ -11,7 +11,7 @@ import java.util.Map;
 import ascenseur.traitement.*;
 
 public class VueSimplifiee {
-	public void getVue0() {
+	public void getVueCoupe() {
 		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
 		List<RequeteExterne> requetesExternes = Controleur.getInstance().getRequetesExternes();
 		int nombreEtages = Controleur.getInstance().getEtages();
@@ -71,9 +71,9 @@ public class VueSimplifiee {
 			System.out.println(affichage);
 		}
 		
-	} //getVue0()
+	} //getVueCoupe()
 	
-	public void getVue1() {
+	public void getVueInteractif() {
 		// Boutons des panneaux de controle (bloquage aussi)
 		System.out.println("Ajout de requêtes internes");
 		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
@@ -145,13 +145,14 @@ public class VueSimplifiee {
             }
         }
         System.out.println("Ajout de requêtes externes terminées !");
-	} // getVue1()
+	} // getVueInteractif()
 
-    public void getVue2() {
+    public void getVueRequetes() {
 
-    }
+    } // getVueRequetes()
 	
 	public static void main(String[] args) {
+        // Fonction main de test, celle de l'application se trouve dans le controlleur
 		VueSimplifiee vs = new VueSimplifiee();
 		List<Ascenseur> ascenseurs = new ArrayList<>();
 		List<RequeteExterne> requetesExternes = new ArrayList<>();
@@ -177,6 +178,6 @@ public class VueSimplifiee {
 		
 		listRequetesInternes.put(ascenseurs.get(2), requetesInternes);		
 
-		vs.getVue1();
+		vs.getVueInteractif();
 	} // main()
 }
