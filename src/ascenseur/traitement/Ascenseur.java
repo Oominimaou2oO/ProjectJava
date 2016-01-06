@@ -1,6 +1,7 @@
 package ascenseur.traitement;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Ascenseur {
@@ -8,7 +9,7 @@ public class Ascenseur {
     private int etage;
     private boolean bloquer;
 
-    private List<Requete> requetes = new ArrayList<>();
+    private LinkedList<Requete> requetes = new LinkedList<>();
 
     public Ascenseur() {
         this.etat = Constantes.IMMOBILE_FERMER;
@@ -29,7 +30,7 @@ public class Ascenseur {
     } // debloquer()
 
     public void ajouterRequete(Requete requete) {
-        requetes.add(requete);
+        requetes.addLast(requete);
     } // ajouterRequete
 
     public void creerRequeteInterne(int etage) {
@@ -37,46 +38,42 @@ public class Ascenseur {
     } // creerRequeteInterne()
 
     public void action() {
-        if (!bloquer) {
-            switch (etat) {
-                case Constantes.IMMOBILE_FERMER:
-                    if (!requetes.isEmpty()) {
-                        int etageCible = requetes.get(requetes.size() - 1).getEtage();
-                        if (etageCible > etage) {
-                            etat = Constantes.MOUVEMENT_VERS_LE_HAUT;
-                        } else if (etageCible < etage) {
-                            --etage;
-                            etat = Constantes.MOUVEMENT_VERS_LE_BAS;
-                        } else {
-                            etat = Constantes.IMMOBILE_OUVERT;
-                        }
+        if (bloquer) return;
+
+        switch (etat) {
+            case Constantes.IMMOBILE_FERMER:
+                if (!requetes.isEmpty()) {
+                    int etageCible = requetes.getFirst().getEtage();
+                    if (etageCible > etage) {
+                        etat = Constantes.MOUVEMENT_VERS_LE_HAUT;
+                    } else if (etageCible < etage) {
+                        --etage;
+                        etat = Constantes.MOUVEMENT_VERS_LE_BAS;
+                    } else {
+                        etat = Constantes.IMMOBILE_OUVERT;
                     }
-                    break;
-                case Constantes.IMMOBILE_OUVERT:
-                    if (requetes.isEmpty() || requetes.get(requetes.size() - 1).getEtage() != etage) {
-                        etat = Constantes.IMMOBILE_FERMER;
-                    }
-                    break;
-                case Constantes.MOUVEMENT_VERS_LE_BAS:
-                    --etage;
-                    if (!requetes.isEmpty()) {
-                        int etageCible = requetes.get(requetes.size() - 1).getEtage();
-                        if (etageCible == etage) {
-                            etat = Constantes.IMMOBILE_OUVERT;
-                        }
-                    }
-                    break;
-                case Constantes.MOUVEMENT_VERS_LE_HAUT:
-                    ++etage;
-                    if (!requetes.isEmpty()) {
-                        int etageCible = requetes.get(requetes.size() - 1).getEtage();
-                        if (etageCible == etage) {
-                            etat = Constantes.IMMOBILE_OUVERT;
-                        }
-                    }
-                    break;
-            }
+                }
+                break;
+            case Constantes.IMMOBILE_OUVERT:
+                requetes.removeFirst();
+                if (requetes.isEmpty() || requetes.getFirst().getEtage() != etage) {
+                    etat = Constantes.IMMOBILE_FERMER;
+                }
+                break;
+            case Constantes.MOUVEMENT_VERS_LE_BAS:
+                --etage;
+                if (requetes.getFirst().getEtage() == etage) {
+                    etat = Constantes.IMMOBILE_OUVERT;
+                }
+                break;
+            case Constantes.MOUVEMENT_VERS_LE_HAUT:
+                ++etage;
+                if (requetes.getFirst().getEtage() == etage) {
+                    etat = Constantes.IMMOBILE_OUVERT;
+                }
+                break;
         }
+        System.out.println("Action : " + etage + " -> " + requetes.getFirst().getEtage());
         // To Do : Satisfaire les requete de l'étage actuel
     } // action()
 
