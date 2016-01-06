@@ -1,21 +1,22 @@
 package ascenseur.affichage;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ascenseur.traitement.Ascenseur;
-import ascenseur.traitement.Constantes;
-import ascenseur.traitement.RequeteExterne;
-import ascenseur.traitement.RequeteInterne;
+import ascenseur.traitement.*;
 
 public class VueSimplifiee {
-	public void getVue1(int nombreEtages, List<Ascenseur> ascenseurs, 
-			List<RequeteExterne> requetesExternes, Map<Ascenseur, List<RequeteInterne>> listRequetesInternes) {
-				
+	public void getVue1() {
+		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
+		List<RequeteExterne> requetesExternes = Controleur.getInstance().getRequetesExternes();
+		int nombreEtages = Controleur.getInstance().getEtages();
+
 		String affichage= "VUE EN COUPE";
-		List<RequeteInterne> requetesInternes = new ArrayList<>();
 
 		for(int i = 0; i < 4 + 11 * ascenseurs.size(); ++i) {
 			affichage += " ";
@@ -45,15 +46,16 @@ public class VueSimplifiee {
 		
 		System.out.println("\nPanneaux de controle des ascenseurs (Bouton activé) : ");
 		List<Integer> etagesPressed = new ArrayList<>();
-		Ascenseur ascenseur;
+        List<Requete> requetesInternes = new ArrayList<>();
+        Ascenseur ascenseur;
 		for(int i = 0; i < ascenseurs.size(); ++ i) {
 			etagesPressed.clear();
 			ascenseur = ascenseurs.get(i);
-			requetesInternes = listRequetesInternes.get(ascenseur);
+            requetesInternes = ascenseur.getRequetes();
 			
 			if(requetesInternes != null) {
-				for(RequeteInterne requeteInterne : requetesInternes) {
-					etagesPressed.add(requeteInterne.getEtage());			
+				for(Requete requete : requetesInternes) {
+					etagesPressed.add(requete.getEtage());
 				}
 			}
 			
@@ -73,7 +75,54 @@ public class VueSimplifiee {
 	
 	public void getVue2() {
 		// Boutons des panneaux de controle (bloquage aussi)
-		
+		System.out.println("Ajout de requêtes internes");
+		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
+		Ascenseur ascenseur;
+        int etages = Controleur.getInstance().getEtages();
+		String etat;
+		for(int i = 0; i < ascenseurs.size(); ++i) {
+			ascenseur = ascenseurs.get(i);
+			switch (ascenseur.getEtat()) {
+				case Constantes.IMMOBILE_OUVERT:
+					etat = "Immobile ouvert";
+					break;
+				case Constantes.MOUVEMENT_VERS_LE_BAS:
+					etat = "Mouvement vers le bas";
+					break;
+				case Constantes.MOUVEMENT_VERS_LE_HAUT:
+					etat = "Mouvement vers le haut";
+					break;
+				default:
+					etat = "Immobile fermé";
+			}
+			System.out.println("Ascenseur " + i);
+			System.out.println("Etat : " + etat);
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            String line;
+            int etage;
+            for(;;){
+                System.out.println("Etage à desservir (Laisser vide pour passer à la suite) :");
+                try {
+                    line = bufferedReader.readLine();
+                    if(line.equals("")) break;
+                    etage = Integer.parseInt(line);
+                    if(etage > etages) continue;
+                    ascenseur.creerRequeteInterne(etage);
+                    System.out.println("Requete interne ajouté vers l'étage " + etage);
+                }
+                catch (IOException e) {
+                    System.out.println("Erreur de saisie!");
+                }
+            }
+            System.out.println("Ajout de requêtes internes terminées !");
+		}
+
+		System.out.println("Ajout de requêtes externes");
+		System.out.println("Etage X :");
+		System.out.println("Direction du déplacement (H[AUT] | B[AS]) (Laisser vide pour passer à la suite) :");
+		System.out.println("Appel d'un ascenseur à l'étage X, direction Y.");
+		System.out.println("Ajout de requêtes externes terminées !");
 		// Boutons de chaque palier
 	} // getVue2()
 	
@@ -103,6 +152,6 @@ public class VueSimplifiee {
 		
 		listRequetesInternes.put(ascenseurs.get(2), requetesInternes);		
 
-		vs.getVue1(5, ascenseurs, requetesExternes, listRequetesInternes);
+		vs.getVue1();
 	} // main()
 }
