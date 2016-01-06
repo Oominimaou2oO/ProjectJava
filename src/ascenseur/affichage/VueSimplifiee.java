@@ -11,7 +11,7 @@ import java.util.Map;
 import ascenseur.traitement.*;
 
 public class VueSimplifiee {
-	public void getVue1() {
+	public void getVue0() {
 		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
 		List<RequeteExterne> requetesExternes = Controleur.getInstance().getRequetesExternes();
 		int nombreEtages = Controleur.getInstance().getEtages();
@@ -23,7 +23,7 @@ public class VueSimplifiee {
 		}
 		
 		System.out.println(affichage + "Boutons activés");
-		for(int i = nombreEtages; i >= 0; --i) {
+		for(int i = nombreEtages - 1; i >= 0; --i) {
 			affichage = "Etage " + i;
 			for(int j = 0; j < 10  - Integer.toString(i).length(); ++j) {
 				affichage += " ";
@@ -71,15 +71,17 @@ public class VueSimplifiee {
 			System.out.println(affichage);
 		}
 		
-	} //getVue1() 
+	} //getVue0()
 	
-	public void getVue2() {
+	public void getVue1() {
 		// Boutons des panneaux de controle (bloquage aussi)
 		System.out.println("Ajout de requêtes internes");
 		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
 		Ascenseur ascenseur;
         int etages = Controleur.getInstance().getEtages();
 		String etat;
+        String line;
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		for(int i = 0; i < ascenseurs.size(); ++i) {
 			ascenseur = ascenseurs.get(i);
 			switch (ascenseur.getEtat()) {
@@ -97,9 +99,6 @@ public class VueSimplifiee {
 			}
 			System.out.println("Ascenseur " + i);
 			System.out.println("Etat : " + etat);
-
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            String line;
             int etage;
             for(;;){
                 System.out.println("Etage à desservir (Laisser vide pour passer à la suite) :");
@@ -107,24 +106,50 @@ public class VueSimplifiee {
                     line = bufferedReader.readLine();
                     if(line.equals("")) break;
                     etage = Integer.parseInt(line);
-                    if(etage > etages) continue;
+                    if(etage >= etages) {
+                        System.out.println("Cet étage n'existe pas. Les étages vont de 0 à " + (etages - 1) + ".");
+                        continue;
+                    }
                     ascenseur.creerRequeteInterne(etage);
-                    System.out.println("Requete interne ajouté vers l'étage " + etage);
+                    System.out.println("Requete interne ajouté vers l'étage " + etage + ".");
                 }
                 catch (IOException e) {
-                    System.out.println("Erreur de saisie!");
+                    System.out.println("Erreur de saisie !");
                 }
             }
             System.out.println("Ajout de requêtes internes terminées !");
 		}
+        System.out.println("Ajout de requêtes externes");
+        for(int i = 0; i < etages; ++i) {
+            System.out.println("Etage " + i + " :");
+            for(;;) {
+                System.out.println("Direction du déplacement (H[AUT] | B[AS]) (Laisser vide pour passer à la suite) :");
+                try {
+                    line = bufferedReader.readLine();
+                    if(line.equals("")) break;
+                    if(line.toLowerCase().equals("haut") || line.toLowerCase().equals("h")) {
+                        Controleur.getInstance().creerRequeteExterne(i, Constantes.MOUVEMENT_VERS_LE_HAUT);
+                        System.out.println("Requete externe ajouté à l'étage " + i + " vers le haut.");
+                    }
+                    else if(line.toLowerCase().equals("bas") || line.toLowerCase().equals("b")) {
+                        Controleur.getInstance().creerRequeteExterne(i, Constantes.MOUVEMENT_VERS_LE_BAS);
+                        System.out.println("Requete externe ajouté à l'étage " + i + " vers le bas.");
+                    }
+                    else {
+                        continue;
+                    }
+                }
+                catch (IOException e) {
+                    System.out.println("Erreur de saisie !");
+                }
+            }
+        }
+        System.out.println("Ajout de requêtes externes terminées !");
+	} // getVue1()
 
-		System.out.println("Ajout de requêtes externes");
-		System.out.println("Etage X :");
-		System.out.println("Direction du déplacement (H[AUT] | B[AS]) (Laisser vide pour passer à la suite) :");
-		System.out.println("Appel d'un ascenseur à l'étage X, direction Y.");
-		System.out.println("Ajout de requêtes externes terminées !");
-		// Boutons de chaque palier
-	} // getVue2()
+    public void getVue2() {
+
+    }
 	
 	public static void main(String[] args) {
 		VueSimplifiee vs = new VueSimplifiee();

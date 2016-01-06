@@ -71,19 +71,40 @@ public class Controleur {
         System.out.println("Création terminé !");
         String line = "";
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int vue;
+        for(;;) {
 
-        do {
-            vueSimplifiee.getVue2();
-            vueSimplifiee.getVue1();
-            System.out.println("Appuyez sur Entrée pour passer à litération suivante, ecrivez 'exit' pour quitter");
+            System.out.println("Appuyez sur Entrée pour passer à litération suivante., ecrivez 'exit' pour quitter.");
+            System.out.println("Tapez '0' pour accéder à la vue en coupe.");
+            System.out.println("Tapez '1' pour accéder à la vue interactive.");
+            System.out.println("Tapez '2' pour accéder à la vue listant les requêtes à satisfaire.");
+            System.out.println("Tapez 'exit' pour quitter.");
             try {
                 line = bufferedReader.readLine();
+                if(line.equals("")) {
+                    for(Ascenseur ascenseur : Controleur.getInstance().ascenseurs)
+                        ascenseur.action();
+                    continue;
+                }
+                if(line.equals("exit")) break;
+                vue = Integer.parseInt(line);
+                switch (vue) {
+                    case 0:
+                        vueSimplifiee.getVue0();
+                        break;
+                    case 1:
+                        vueSimplifiee.getVue1();
+                        break;
+                    case 2:
+                        vueSimplifiee.getVue2();
+                        break;
+                }
             }
             catch (IOException e) {
                 System.out.println("Erreur de saisie!");
             }
+
         }
-        while(!line.equals("exit"));
         //System.out.println("Exit");
     } // main()
 }
