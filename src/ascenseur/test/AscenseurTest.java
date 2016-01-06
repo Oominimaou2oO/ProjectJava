@@ -38,25 +38,34 @@ public class AscenseurTest {
     public void testAction() throws Exception {
         // IL MONTE EN HAUT (PREMIER REQUETE)
         testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
+        System.out.println(ascenseur);
         assertEquals(true,!ascenseur.getRequetes().isEmpty());
         ascenseur.action();
         testEtat(Constantes.MOUVEMENT_VERS_LE_HAUT,ascenseur.getEtat());
+        System.out.println(ascenseur);
         ascenseur.action();
         testEtat(Constantes.MOUVEMENT_VERS_LE_HAUT,ascenseur.getEtat());
+        System.out.println(ascenseur);
         ascenseur.action();
         testEtat(Constantes.IMMOBILE_OUVERT,ascenseur.getEtat());
+        System.out.println(ascenseur);
         ascenseur.action();
         testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
+        System.out.println(ascenseur);
 
         // IL DESCEND EN BAS (SECONDE REQUETE)
         assertEquals(true,!ascenseur.getRequetes().isEmpty());
         ascenseur.action();
         testEtat(Constantes.MOUVEMENT_VERS_LE_BAS,ascenseur.getEtat());
+        System.out.println(ascenseur);
         ascenseur.action();
         testEtat(Constantes.MOUVEMENT_VERS_LE_BAS,ascenseur.getEtat());
+        System.out.println(ascenseur);
         ascenseur.action();
         testEtat(Constantes.IMMOBILE_OUVERT,ascenseur.getEtat());
+        System.out.println(ascenseur);
         ascenseur.action();
         testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
+        System.out.println(ascenseur);
     }
 }
