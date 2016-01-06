@@ -61,7 +61,6 @@ public class Ascenseur {
                 break;
             case Constantes.MOUVEMENT_VERS_LE_BAS:
                 --etage;
-                System.out.println("EtageD : " + requetes.getFirst().getEtage() + " | etageC : " + etage);
                 if (requetes.getFirst().getEtage() == etage) {
                     etat = Constantes.IMMOBILE_OUVERT;
                 }
@@ -111,5 +110,5 @@ public class Ascenseur {
 
     public List<Requete> getRequetes() {
         return requetes;
-    }
+    } // getRequetes()
 }
