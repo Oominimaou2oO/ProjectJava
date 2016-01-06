@@ -47,7 +47,6 @@ public class Ascenseur {
                     if (etageCible > etage) {
                         etat = Constantes.MOUVEMENT_VERS_LE_HAUT;
                     } else if (etageCible < etage) {
-                        --etage;
                         etat = Constantes.MOUVEMENT_VERS_LE_BAS;
                     } else {
                         etat = Constantes.IMMOBILE_OUVERT;
@@ -62,6 +61,7 @@ public class Ascenseur {
                 break;
             case Constantes.MOUVEMENT_VERS_LE_BAS:
                 --etage;
+                System.out.println("EtageD : " + requetes.getFirst().getEtage() + " | etageC : " + etage);
                 if (requetes.getFirst().getEtage() == etage) {
                     etat = Constantes.IMMOBILE_OUVERT;
                 }
@@ -73,7 +73,6 @@ public class Ascenseur {
                 }
                 break;
         }
-        System.out.println("Action : " + etage + " -> " + requetes.getFirst().getEtage());
         // To Do : Satisfaire les requete de l'étage actuel
     } // action()
 

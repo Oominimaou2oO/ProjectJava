@@ -51,7 +51,12 @@ public class AscenseurTest {
         // IL DESCEND EN BAS (SECONDE REQUETE)
         assertEquals(true,!ascenseur.getRequetes().isEmpty());
         ascenseur.action();
-
-
+        testEtat(Constantes.MOUVEMENT_VERS_LE_BAS,ascenseur.getEtat());
+        ascenseur.action();
+        testEtat(Constantes.MOUVEMENT_VERS_LE_BAS,ascenseur.getEtat());
+        ascenseur.action();
+        testEtat(Constantes.IMMOBILE_OUVERT,ascenseur.getEtat());
+        ascenseur.action();
+        testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
     }
 }
