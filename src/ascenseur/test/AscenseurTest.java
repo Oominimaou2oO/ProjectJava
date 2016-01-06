@@ -3,7 +3,6 @@ package ascenseur.test;
 import ascenseur.traitement.*;
 import org.junit.*;
 
-import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**

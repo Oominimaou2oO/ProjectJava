@@ -88,13 +88,13 @@ public class Controleur {
                 vue = Integer.parseInt(line);
                 switch (vue) {
                     case 0:
-                        vueSimplifiee.getVue0();
+                        vueSimplifiee.getVueCoupe();
                         break;
                     case 1:
-                        vueSimplifiee.getVue1();
+                        vueSimplifiee.getVueInteractif();
                         break;
                     case 2:
-                        vueSimplifiee.getVue2();
+                        vueSimplifiee.getVueInteractif();
                         break;
                 }
             }
