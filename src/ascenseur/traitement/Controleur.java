@@ -102,7 +102,6 @@ public class Controleur {
             catch (IOException e) {
                 System.out.println("Erreur de saisie!");
             }
-
         }
         //System.out.println("Exit");
     } // main()
