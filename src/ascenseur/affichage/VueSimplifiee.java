@@ -16,13 +16,14 @@ public class VueSimplifiee {
 		List<RequeteExterne> requetesExternes = Controleur.getInstance().getRequetesExternes();
 		int nombreEtages = Controleur.getInstance().getEtages();
 
-		String affichage= "VUE EN COUPE";
+		String affichage = "            ";
+		System.out.println("VUE EN COUPE");
 
-		for(int i = 0; i < 4 + 11 * ascenseurs.size(); ++i) {
-			affichage += " ";
+		for(int i = 0; i < ascenseurs.size(); ++i) {
+			affichage += "Ascenseur " + (i + 1) + "    ";
 		}
 		
-		System.out.println(affichage + "Boutons activés");
+		System.out.println(affichage + "    Boutons activés");
 		for(int i = nombreEtages - 1; i >= 0; --i) {
 			affichage = "Etage " + i;
 			for(int j = 0; j < 10  - Integer.toString(i).length(); ++j) {
@@ -30,10 +31,10 @@ public class VueSimplifiee {
 			}
 			for(Ascenseur ascenseur : ascenseurs) {
 				if(ascenseur.getEtage() == i) {
-					affichage += ascenseur + "        ";
+					affichage += ascenseur + "            ";
 				}
 				else {
-					affichage += " '         ";
+					affichage += " '             ";
 				}
 			}
 			for(RequeteExterne requeteExterne : requetesExternes) {
@@ -59,7 +60,7 @@ public class VueSimplifiee {
 				}
 			}
 			
-			affichage = "Ascenseur " + i + " : ";
+			affichage = "Ascenseur " + (i + 1) + " : ";
 			for(int j = 0; j < nombreEtages; ++j) {
 				if(etagesPressed.contains(j))
 					affichage += "(" + j + ") ";
@@ -75,7 +76,7 @@ public class VueSimplifiee {
 	
 	public void getVueInteractif() {
 		// Boutons des panneaux de controle (bloquage aussi)
-		System.out.println("Ajout de requêtes internes");
+		System.out.println("AJOUTER DES REQUÊTES INTERNES");
 		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
 		Ascenseur ascenseur;
         int etages = Controleur.getInstance().getEtages();
@@ -97,7 +98,7 @@ public class VueSimplifiee {
 				default:
 					etat = "Immobile fermé";
 			}
-			System.out.println("Ascenseur " + i);
+			System.out.println("Ascenseur " + (i + 1));
 			System.out.println("Etat : " + etat);
             int etage;
             for(;;){
@@ -113,13 +114,13 @@ public class VueSimplifiee {
                     ascenseur.creerRequeteInterne(etage);
                     System.out.println("Requete interne ajouté vers l'étage " + etage + ".");
                 }
-                catch (IOException e) {
+                catch (IOException|NumberFormatException e) {
                     System.out.println("Erreur de saisie !");
                 }
             }
-            System.out.println("Ajout de requêtes internes terminées !");
+            System.out.println("Ajout de requêtes internes terminées !\n");
 		}
-        System.out.println("Ajout de requêtes externes");
+        System.out.println("AJOUTER DES REQUÊTES EXTERNES");
         for(int i = 0; i < etages; ++i) {
             System.out.println("Etage " + i + " :");
             for(;;) {
@@ -148,7 +149,35 @@ public class VueSimplifiee {
 	} // getVueInteractif()
 
     public void getVueRequetes() {
+		List<Ascenseur> ascenseurs = Controleur.getInstance().getAscenseurs();
+		List<RequeteExterne> requetesExternes = Controleur.getInstance().getRequetesExternes();
+        List<Requete> requetes;
+        String affichage = "LISTE DES REQUÊTES A SATISFAIRE";
+        Requete requete;
+        Ascenseur ascenseur;
 
+		int nombreEtages = Controleur.getInstance().getEtages();
+
+		for(int i = 0; i < nombreEtages; ++i) {
+            System.out.println("Etage " + i);
+            for (int indexRequete = 0; indexRequete < requetesExternes.size(); ++indexRequete) {
+                requete = requetesExternes.get(indexRequete);
+                if(requete.getEtage() == i) {
+                    System.out.println("Requete externe en direction du " + requete + ".");
+                }
+            }
+            for (int indexAscenseur = 0; indexAscenseur < ascenseurs.size(); ++indexAscenseur) {
+                ascenseur = ascenseurs.get(indexAscenseur);
+                requetes = ascenseur.getRequetes();
+                for (int indexRequete = 0; indexRequete < requetes.size(); ++indexRequete) {
+                    requete = requetes.get(indexRequete);
+                    if(requete.getEtage() == i) {
+                        System.out.println("Requete interne de l'ascenseur " + (indexAscenseur + 1) + ".");
+                    }
+                }
+            }
+            System.out.println("");
+        }
     } // getVueRequetes()
 	
 	public static void main(String[] args) {

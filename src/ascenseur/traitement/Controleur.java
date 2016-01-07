@@ -75,12 +75,12 @@ public class Controleur {
         for (int i = 0; i < nombreAscenseurs; ++i) {
             Controleur.getInstance().ascenseurs.add(fab.creer());
         }
-        System.out.println("Création terminé !");
+        System.out.println("Création terminé !\n");
         String line = "";
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int vue;
         for(;;) {
-            System.out.println("Appuyez sur Entrée pour passer à litération suivante., ecrivez 'exit' pour quitter.");
+            System.out.println("Appuyez sur Entrée pour passer à l'itération suivante.");
             System.out.println("Tapez '0' pour accéder à la vue en coupe.");
             System.out.println("Tapez '1' pour accéder à la vue interactive.");
             System.out.println("Tapez '2' pour accéder à la vue listant les requêtes à satisfaire.");
@@ -88,6 +88,7 @@ public class Controleur {
             try {
                 line = bufferedReader.readLine();
                 if(line.equals("")) {
+                    System.out.println("Traitement des requêtes...\n");
                     for(Ascenseur ascenseur : Controleur.getInstance().ascenseurs)
                         ascenseur.action();
                     continue;
@@ -103,7 +104,7 @@ public class Controleur {
                             vueSimplifiee.getVueInteractif();
                             break;
                         case 2:
-                            vueSimplifiee.getVueInteractif();
+                            vueSimplifiee.getVueRequetes();
                             break;
                     }
                 }
