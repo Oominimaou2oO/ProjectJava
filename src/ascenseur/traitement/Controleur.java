@@ -63,8 +63,9 @@ public class Controleur {
         System.out.println("Nombre d'ascenseurs :");
         int nombreAscenseurs = inputScanner.nextInt();
         System.out.println("Création de " + nombreAscenseurs + " ascenseurs...");
+        IFabrique fab = new FabriqueAscenseur();//ASCENSEUR BASIQUE
         for (int i = 0; i < nombreAscenseurs; ++i) {
-            Controleur.getInstance().ascenseurs.add(new Ascenseur());
+            Controleur.getInstance().ascenseurs.add(fab.creer());
         }
         System.out.println("Création terminé !");
         String line = "";
