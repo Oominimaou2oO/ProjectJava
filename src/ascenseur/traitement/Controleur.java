@@ -29,12 +29,19 @@ public class Controleur {
         requetesExternes.add(new RequeteExterne(etage, direction));
     } // creerRequeteExterne()
 
-    public void choisirAscenseur() {
-        // Pour le moment, fait de manière arbitraires
+    public void distributionArbitraire() {
         for (int i = 0; i < requetesExternes.size(); ++i) {
             ascenseurs.get(i).ajouterRequete(requetesExternes.getFirst());
             requetesExternes.removeFirst();
         }
+    } // distributionArbitraire()
+
+    public void distributionNormale() {
+        // TO DO
+    }
+
+    public void choisirAscenseur() {
+        distributionArbitraire();
     } // choisirAscenseur()
 
     public LinkedList<RequeteExterne> getRequetesExternes() {
@@ -72,7 +79,6 @@ public class Controleur {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int vue;
         for(;;) {
-
             System.out.println("Appuyez sur Entrée pour passer à litération suivante., ecrivez 'exit' pour quitter.");
             System.out.println("Tapez '0' pour accéder à la vue en coupe.");
             System.out.println("Tapez '1' pour accéder à la vue interactive.");
@@ -86,17 +92,22 @@ public class Controleur {
                     continue;
                 }
                 if(line.equals("exit")) break;
-                vue = Integer.parseInt(line);
-                switch (vue) {
-                    case 0:
-                        vueSimplifiee.getVueCoupe();
-                        break;
-                    case 1:
-                        vueSimplifiee.getVueInteractif();
-                        break;
-                    case 2:
-                        vueSimplifiee.getVueInteractif();
-                        break;
+                try {
+                    vue = Integer.parseInt(line);
+                    switch (vue) {
+                        case 0:
+                            vueSimplifiee.getVueCoupe();
+                            break;
+                        case 1:
+                            vueSimplifiee.getVueInteractif();
+                            break;
+                        case 2:
+                            vueSimplifiee.getVueInteractif();
+                            break;
+                    }
+                }
+                catch (NumberFormatException e ) {
+                    continue;
                 }
             }
             catch (IOException e) {
