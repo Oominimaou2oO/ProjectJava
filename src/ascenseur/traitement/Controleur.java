@@ -1,7 +1,6 @@
 package ascenseur.traitement;
 
 import ascenseur.affichage.VueSimplifiee;
-import ascenseur.traitement.Fabrique.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import ascenseur.traitement.fabrique.*;
 
 public class Controleur {
 
