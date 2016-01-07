@@ -3,11 +3,13 @@ package ascenseur.traitement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Ascenseur {
     private int etat;
     private int etage;
     private boolean bloquer;
+    protected String libelle = "Ascenseur basique";
 
     private LinkedList<Requete> requetes = new LinkedList<>();
 
@@ -111,4 +113,8 @@ public class Ascenseur {
     public List<Requete> getRequetes() {
         return requetes;
     } // getRequetes()
+
+    public String getLibelle() {
+        return libelle;
+    }
 }

@@ -1,6 +1,7 @@
 package ascenseur.traitement;
 
 import ascenseur.affichage.VueSimplifiee;
+import ascenseur.traitement.Fabrique.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
