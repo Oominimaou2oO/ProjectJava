@@ -1,4 +1,8 @@
-package ascenseur.traitement;
+package ascenseur.traitement.Fabrique;
+
+import ascenseur.traitement.Ascenseur;
+import ascenseur.traitement.AscenseurAvecAugmentationVitesse;
+import ascenseur.traitement.AscenseurAvecMusiqueAmbiance;
 
 /**
  * Created by Kevin on 07/01/2016.
