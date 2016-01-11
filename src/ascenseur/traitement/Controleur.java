@@ -1,15 +1,8 @@
 package ascenseur.traitement;
 
-import ascenseur.affichage.VueSimplifiee;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
-import ascenseur.traitement.fabrique.*;
 import ascenseur.traitement.strategie.IStrategieRequete;
 import ascenseur.traitement.strategie.StrategieRequeteArbitraire;
 
@@ -34,7 +27,7 @@ public class Controleur {
 
     public void ajouterAscenseur(Ascenseur ascenseur) {
         ascenseurs.add(ascenseur);
-    }
+    } // ajouterAscenseur()
 
     public void choisirAscenseur() {
         strategieRequete.choisirAscenseur();
@@ -46,11 +39,11 @@ public class Controleur {
 
     public List<Ascenseur> getAscenseurs() {
         return ascenseurs;
-    } //getAscenseurs()
+    } // getAscenseurs()
 
     public void update() {
         choisirAscenseur();
         for(Ascenseur ascenseur : ascenseurs)
             ascenseur.action();
-    }
+    } // update()
 }
