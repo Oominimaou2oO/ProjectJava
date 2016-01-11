@@ -16,69 +16,101 @@ import java.util.Scanner;
  * Created by Alexandre on 11/01/2016.
  */
 public class Application {
-    public static void main(String[] args) {
+    private boolean isRunning;
+    private int nombreEtages;
 
+    private Application() {
+        isRunning = true;
+    }
+
+    private void update() {
         Controleur controleur = Controleur.getInstance();
+
         Vue vue = new VueSimplifiee();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String inputString = "";
+        int vueChoix;
+
+        System.out.println("Appuyez sur Entrée pour passer à l'itération suivante.");
+        System.out.println("Tapez '0' pour accéder à la vue en coupe.");
+        System.out.println("Tapez '1' pour accéder à la vue interactive.");
+        System.out.println("Tapez '2' pour accéder à la vue listant les requêtes à satisfaire.");
+        System.out.println("Tapez 'exit' pour quitter.");
+
+        try {
+            inputString = bufferedReader.readLine();
+            if(inputString.equals("")) {
+                System.out.println("Traitement des requêtes...\n");
+                controleur.update();
+                return;
+            }
+            if(inputString.equals("exit")) {
+                isRunning = false;
+                return;
+            }
+            try {
+                vueChoix = Integer.parseInt(inputString);
+                switch (vueChoix) {
+                    case 0:
+                        vue.getVueCoupe(Controleur.getInstance().getAscenseurs(),
+                                Controleur.getInstance().getRequetesExternes(), nombreEtages);
+                        break;
+                    case 1:
+                        vue.getVueInteractif(Controleur.getInstance().getAscenseurs(), nombreEtages);
+                        break;
+                    case 2:
+                        vue.getVueRequetes(Controleur.getInstance().getAscenseurs(),
+                                Controleur.getInstance().getRequetesExternes(), nombreEtages);
+                        break;
+                }
+            }
+            catch (NumberFormatException e ) {
+                return;
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Erreur de saisie!");
+        }
+    }
+
+    private boolean isRunning() {
+        return isRunning;
+    }
+
+    private void stop() {
+
+    }
+
+    public static void main(String[] args) {
+        IFabrique fabrique = new FabriqueAscenseur(); // Ascenseur basique
+        Application application = new Application();
+
         Scanner inputScanner = new Scanner(System.in);
-        String inputString;
-        int nombreEtages;
+
+        int nombreAscenseurs;
 
         System.out.println("Initialisation");
-
         System.out.println("Nombre d'étages à desservir :");
-        nombreEtages = inputScanner.nextInt();
-        System.out.println("Nombre d'étages fixé à " + nombreEtages + ".");
 
+        application.nombreEtages = inputScanner.nextInt();
+
+        System.out.println("Nombre d'étages fixé à " + application.nombreEtages + ".");
         System.out.println("Nombre d'ascenseurs :");
-        int nombreAscenseurs = inputScanner.nextInt();
+
+        nombreAscenseurs = inputScanner.nextInt();
+
         System.out.println("Création de " + nombreAscenseurs + " ascenseurs...");
-        IFabrique fab = new FabriqueAscenseur();//ASCENSEUR BASIQUE
+
         for (int i = 0; i < nombreAscenseurs; ++i) {
-            Controleur.getInstance().ajouterAscenseur(fab.creer());
+            Controleur.getInstance().ajouterAscenseur(fabrique.creer());
         }
+
         System.out.println("Création terminé !\n");
-        String line = "";
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int vueChoix;
-        for(;;) {
-            System.out.println("Appuyez sur Entrée pour passer à l'itération suivante.");
-            System.out.println("Tapez '0' pour accéder à la vue en coupe.");
-            System.out.println("Tapez '1' pour accéder à la vue interactive.");
-            System.out.println("Tapez '2' pour accéder à la vue listant les requêtes à satisfaire.");
-            System.out.println("Tapez 'exit' pour quitter.");
-            try {
-                line = bufferedReader.readLine();
-                if(line.equals("")) {
-                    System.out.println("Traitement des requêtes...\n");
-                    controleur.update();
-                    continue;
-                }
-                if(line.equals("exit")) break;
-                try {
-                    vueChoix = Integer.parseInt(line);
-                    switch (vueChoix) {
-                        case 0:
-                            vue.getVueCoupe(Controleur.getInstance().getAscenseurs(),
-                                    Controleur.getInstance().getRequetesExternes(), nombreEtages);
-                            break;
-                        case 1:
-                            vue.getVueInteractif(Controleur.getInstance().getAscenseurs(), nombreEtages);
-                            break;
-                        case 2:
-                            vue.getVueRequetes(Controleur.getInstance().getAscenseurs(),
-                                    Controleur.getInstance().getRequetesExternes(), nombreEtages);
-                            break;
-                    }
-                }
-                catch (NumberFormatException e ) {
-                    continue;
-                }
-            }
-            catch (IOException e) {
-                System.out.println("Erreur de saisie!");
-            }
+
+        while(application.isRunning()) {
+            application.update();
         }
-        //System.out.println("Exit");
+        application.stop();
+
     } // main()
 }
