@@ -40,6 +40,8 @@ public class ControleurTest {
 
     @Test
     public void testChoisirAscenseur() {
+        //ICI VU QUE LA STRATEGIE EST StrategieRequeteArbitraire
+        //L'ascenseur 0 doit avoir 2 requetes !
         IFabrique fab = new FabriqueAscenseur();
         controleur.ajouterAscenseur(fab.creer());
         controleur.ajouterAscenseur(fab.creer());
