@@ -20,8 +20,6 @@ public class Controleur {
     private LinkedList<RequeteExterne> requetesExternes = new LinkedList<>();
     private IStrategieRequete strategieRequete;
 
-    private int etages;
-
     private Controleur() {
         strategieRequete = new StrategieRequeteArbitraire();
     } // Constructor
@@ -42,15 +40,12 @@ public class Controleur {
         return requetesExternes;
     } // getRequetesExternes()
 
-    public int getEtages() {
-        return etages;
-    } // getEtages()
-
     public List<Ascenseur> getAscenseurs() {
         return ascenseurs;
     } //getAscenseurs()
 
     public static void main(String[] args) {
+        int nombreEtages;
         String inputString;
         Scanner inputScanner = new Scanner(System.in);
         VueSimplifiee vueSimplifiee = new VueSimplifiee();
@@ -58,8 +53,8 @@ public class Controleur {
         System.out.println("Initialisation");
 
         System.out.println("Nombre d'étages à desservir :");
-        Controleur.getInstance().etages = inputScanner.nextInt();
-        System.out.println("Nombre d'étages fixé à " + Controleur.getInstance().etages + ".");
+        nombreEtages = inputScanner.nextInt();
+        System.out.println("Nombre d'étages fixé à " + nombreEtages + ".");
 
         System.out.println("Nombre d'ascenseurs :");
         int nombreAscenseurs = inputScanner.nextInt();
@@ -92,13 +87,15 @@ public class Controleur {
                     vue = Integer.parseInt(line);
                     switch (vue) {
                         case 0:
-                            vueSimplifiee.getVueCoupe();
+                            vueSimplifiee.getVueCoupe(Controleur.getInstance().ascenseurs,
+                                    Controleur.getInstance().requetesExternes, nombreEtages);
                             break;
                         case 1:
-                            vueSimplifiee.getVueInteractif();
+                            vueSimplifiee.getVueInteractif(Controleur.getInstance().ascenseurs, nombreEtages);
                             break;
                         case 2:
-                            vueSimplifiee.getVueRequetes();
+                            vueSimplifiee.getVueRequetes(Controleur.getInstance().ascenseurs,
+                                    Controleur.getInstance().requetesExternes, nombreEtages);
                             break;
                     }
                 }
