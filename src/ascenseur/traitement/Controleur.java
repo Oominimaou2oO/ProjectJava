@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import ascenseur.traitement.fabrique.*;
+import ascenseur.traitement.Fabrique.*;
 
 public class Controleur {
 

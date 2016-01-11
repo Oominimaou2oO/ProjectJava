@@ -1,9 +1,9 @@
 package ascenseur.traitement;
 
-import java.util.ArrayList;
+import ascenseur.traitement.Strategie.ParOrdre;
+import ascenseur.traitement.Strategie.IStrategie;
+
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Ascenseur {
     private int etat;
@@ -12,8 +12,10 @@ public class Ascenseur {
     protected String libelle = "Ascenseur basique";
 
     private LinkedList<Requete> requetes = new LinkedList<>();
+    private IStrategie strategie;
 
     public Ascenseur() {
+        this.strategie = new ParOrdre();
         this.etat = Constantes.IMMOBILE_FERMER;
         this.etage = 0;
         this.bloquer = false;
@@ -41,7 +43,9 @@ public class Ascenseur {
 
     public void action() {
         if (bloquer) return;
+        strategie.action(this);
 
+        /*
         switch (etat) {
             case Constantes.IMMOBILE_FERMER:
                 if (!requetes.isEmpty()) {
@@ -73,7 +77,7 @@ public class Ascenseur {
                     etat = Constantes.IMMOBILE_OUVERT;
                 }
                 break;
-        }
+        }*/
         // To Do : Satisfaire les requetes de l'étage actuel
     } // action()
 
@@ -98,6 +102,12 @@ public class Ascenseur {
         return affichage;
     } // toString()
 
+    public void setStrategie(IStrategie strategie) { this.strategie = strategie; }
+
+    public void setEtat(int etat) { this.etat = etat; }
+
+    public void setEtage(int etage) { this.etage = etage; }
+
     public int getEtage() {
         return this.etage;
     } // getEtage()
@@ -110,7 +120,7 @@ public class Ascenseur {
         return this.bloquer;
     } // isBloquer()
 
-    public List<Requete> getRequetes() {
+    public LinkedList<Requete> getRequetes() {
         return requetes;
     } // getRequetes()
 

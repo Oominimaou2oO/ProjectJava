@@ -1,7 +1,7 @@
 package ascenseur.test;
 
 import ascenseur.traitement.Ascenseur;
-import ascenseur.traitement.fabrique.*;
+import ascenseur.traitement.Fabrique.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

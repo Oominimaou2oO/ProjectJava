@@ -1,6 +1,7 @@
 package ascenseur.test;
 
 import ascenseur.traitement.*;
+import ascenseur.traitement.Strategie.ParOrdre;
 import org.junit.*;
 
 import static org.junit.Assert.*;
