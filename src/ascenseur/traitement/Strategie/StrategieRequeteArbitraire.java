@@ -1,4 +1,4 @@
-package ascenseur.traitement.Strategie;
+package ascenseur.traitement.strategie;
 
 import ascenseur.traitement.Controleur;
 
@@ -11,6 +11,9 @@ public class StrategieRequeteArbitraire implements IStrategieRequete {
 
     @Override
     public void choisirAscenseur() {
-
-    }
+        for (int i = 0 ; i < controleur.getRequetesExternes().size() ; ++i) {
+            controleur.getAscenseurs().get(i % controleur.getAscenseurs().size()).ajouterRequete(controleur.getRequetesExternes().getFirst());
+            controleur.getRequetesExternes().removeFirst();
+        }
+    } // choisirAscenseur(
 }
