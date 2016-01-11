@@ -7,13 +7,12 @@ import ascenseur.traitement.Controleur;
  */
 public class StrategieRequeteArbitraire implements IStrategieRequete {
 
-    private Controleur controleur = Controleur.getInstance();
-
     @Override
     public void choisirAscenseur() {
+        Controleur controleur = Controleur.getInstance();
         for (int i = 0 ; i < controleur.getRequetesExternes().size() ; ++i) {
-            controleur.getAscenseurs().get(i % controleur.getAscenseurs().size()).ajouterRequete(controleur.getRequetesExternes().getFirst());
-            controleur.getRequetesExternes().removeFirst();
+            controleur.getAscenseurs().get(i % controleur.getAscenseurs().size()).ajouterRequete(controleur.getRequetesExternes().get(i));
         }
+        controleur.getRequetesExternes().clear();
     } // choisirAscenseur(
 }
