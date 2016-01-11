@@ -179,34 +179,4 @@ public class VueSimplifiee {
             System.out.println("");
         }
     } // getVueRequetes()
-	
-	public static void main(String[] args) {
-        // Fonction main de test, celle de l'application se trouve dans le controlleur
-		VueSimplifiee vs = new VueSimplifiee();
-		List<Ascenseur> ascenseurs = new ArrayList<>();
-		List<RequeteExterne> requetesExternes = new ArrayList<>();
-		List<RequeteInterne> requetesInternes = new ArrayList<>();
-		
-		Map<Ascenseur, List<RequeteInterne>> listRequetesInternes = new HashMap<>();
-		
-		ascenseurs.add(new Ascenseur());
-		ascenseurs.add(new Ascenseur());
-		ascenseurs.add(new Ascenseur());
-		ascenseurs.add(new Ascenseur());
-		
-		requetesExternes.add(new RequeteExterne(2, Constantes.MOUVEMENT_VERS_LE_BAS));
-		
-		requetesInternes.add(new RequeteInterne(2));
-		requetesInternes.add(new RequeteInterne(4));
-		listRequetesInternes.put(ascenseurs.get(0), requetesInternes);
-		
-		requetesInternes = new ArrayList<>();
-		
-		requetesInternes.add(new RequeteInterne(1));
-		requetesInternes.add(new RequeteInterne(3));
-		
-		listRequetesInternes.put(ascenseurs.get(2), requetesInternes);		
-
-		vs.getVueInteractif();
-	} // main()
 }

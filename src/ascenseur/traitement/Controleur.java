@@ -18,12 +18,12 @@ public class Controleur {
     private static Controleur instance = new Controleur();
     private List<Ascenseur> ascenseurs = new ArrayList<>();
     private LinkedList<RequeteExterne> requetesExternes = new LinkedList<>();
-    private IStrategieRequete strategie;
+    private IStrategieRequete strategieRequete;
 
     private int etages;
 
     private Controleur() {
-        strategie = new StrategieRequeteArbitraire();
+        strategieRequete = new StrategieRequeteArbitraire();
     } // Constructor
 
     public static Controleur getInstance() {
@@ -35,7 +35,7 @@ public class Controleur {
     } // creerRequeteExterne()
 
     public void choisirAscenseur() {
-        strategie.choisirAscenseur();
+        strategieRequete.choisirAscenseur();
     } // choisirAscenseur()
 
     public LinkedList<RequeteExterne> getRequetesExternes() {
@@ -82,6 +82,7 @@ public class Controleur {
                 line = bufferedReader.readLine();
                 if(line.equals("")) {
                     System.out.println("Traitement des requêtes...\n");
+                    Controleur.getInstance().choisirAscenseur();
                     for(Ascenseur ascenseur : Controleur.getInstance().ascenseurs)
                         ascenseur.action();
                     continue;
