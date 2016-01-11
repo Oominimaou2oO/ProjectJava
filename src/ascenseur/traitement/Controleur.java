@@ -10,16 +10,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import ascenseur.traitement.Fabrique.*;
+import ascenseur.traitement.Strategie.IStrategieRequete;
+import ascenseur.traitement.Strategie.StrategieRequeteArbitraire;
 
 public class Controleur {
 
     private static Controleur instance = new Controleur();
     private List<Ascenseur> ascenseurs = new ArrayList<>();
     private LinkedList<RequeteExterne> requetesExternes = new LinkedList<>();
+    private IStrategieRequete strategie;
 
     private int etages;
 
     private Controleur() {
+        strategie = new StrategieRequeteArbitraire();
     } // Constructor
 
     public static Controleur getInstance() {
@@ -30,19 +34,8 @@ public class Controleur {
         requetesExternes.add(new RequeteExterne(etage, direction));
     } // creerRequeteExterne()
 
-    public void distributionArbitraire() {
-        for (int i = 0; i < requetesExternes.size(); ++i) {
-            ascenseurs.get(i).ajouterRequete(requetesExternes.getFirst());
-            requetesExternes.removeFirst();
-        }
-    } // distributionArbitraire()
-
-    public void distributionNormale() {
-        // TO DO
-    }
-
     public void choisirAscenseur() {
-        distributionArbitraire();
+        strategie.choisirAscenseur();
     } // choisirAscenseur()
 
     public LinkedList<RequeteExterne> getRequetesExternes() {

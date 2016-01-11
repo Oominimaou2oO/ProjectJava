@@ -1,7 +1,7 @@
 package ascenseur.traitement;
 
-import ascenseur.traitement.Strategie.ParOrdre;
-import ascenseur.traitement.Strategie.IStrategie;
+import ascenseur.traitement.Strategie.StrategieAscenseurParOrdre;
+import ascenseur.traitement.Strategie.IStrategieAscenseur;
 
 import java.util.LinkedList;
 
@@ -12,10 +12,10 @@ public class Ascenseur {
     protected String libelle = "Ascenseur basique";
 
     private LinkedList<Requete> requetes = new LinkedList<>();
-    private IStrategie strategie;
+    private IStrategieAscenseur strategie;
 
     public Ascenseur() {
-        this.strategie = new ParOrdre();
+        this.strategie = new StrategieAscenseurParOrdre();
         this.etat = Constantes.IMMOBILE_FERMER;
         this.etage = 0;
         this.bloquer = false;
@@ -102,7 +102,7 @@ public class Ascenseur {
         return affichage;
     } // toString()
 
-    public void setStrategie(IStrategie strategie) { this.strategie = strategie; }
+    public void setStrategie(IStrategieAscenseur strategie) { this.strategie = strategie; }
 
     public void setEtat(int etat) { this.etat = etat; }
 

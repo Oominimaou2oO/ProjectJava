@@ -2,12 +2,11 @@ package ascenseur.traitement.Strategie;
 
 import ascenseur.traitement.Ascenseur;
 import ascenseur.traitement.Constantes;
-import ascenseur.traitement.Requete;
 
 /**
  * Created by Kevin on 11/01/2016.
  */
-public class ParOrdre implements IStrategie {
+public class StrategieAscenseurParOrdre implements IStrategieAscenseur {
 
     @Override
     public void action(Ascenseur asc) {
@@ -26,7 +25,7 @@ public class ParOrdre implements IStrategie {
                 break;
             case Constantes.IMMOBILE_OUVERT:
                 for(int i = 1 ; i < asc.getRequetes().size() ; ++i) {
-                    if (asc.getRequetes().get(i) == asc.getRequetes().getFirst())
+                    if (asc.getRequetes().get(i).getEtage() == asc.getRequetes().getFirst().getEtage())
                         asc.getRequetes().remove(i);
                 }
                 asc.getRequetes().removeFirst();

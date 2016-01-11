@@ -1,7 +1,6 @@
 package ascenseur.test;
 
 import ascenseur.traitement.*;
-import ascenseur.traitement.Strategie.ParOrdre;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -52,6 +51,7 @@ public class AscenseurTest {
         ascenseur.action();
         testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
         System.out.println(ascenseur);
+
 
         // IL DESCEND EN BAS (SECONDE REQUETE)
         assertEquals(true,!ascenseur.getRequetes().isEmpty());
