@@ -1,4 +1,4 @@
-package ascenseur.traitement.fabrique;
+package ascenseur.traitement.Fabrique;
 
 import ascenseur.traitement.Ascenseur;
 import ascenseur.traitement.AscenseurAvecMusiqueAmbiance;
