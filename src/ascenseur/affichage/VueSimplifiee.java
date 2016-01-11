@@ -10,7 +10,7 @@ import java.util.Map;
 
 import ascenseur.traitement.*;
 
-public class VueSimplifiee {
+public class VueSimplifiee implements Vue {
 	public void getVueCoupe(List<Ascenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
 		String affichage = "            ";
 		System.out.println("VUE EN COUPE");
