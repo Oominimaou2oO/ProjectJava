@@ -1,4 +1,4 @@
-package ascenseur.traitement.Strategie;
+package ascenseur.traitement.strategie;
 
 import ascenseur.traitement.Ascenseur;
 import ascenseur.traitement.Constantes;

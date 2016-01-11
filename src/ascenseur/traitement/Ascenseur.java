@@ -1,7 +1,7 @@
 package ascenseur.traitement;
 
-import ascenseur.traitement.Strategie.StrategieAscenseurParOrdre;
-import ascenseur.traitement.Strategie.IStrategieAscenseur;
+import ascenseur.traitement.strategie.StrategieAscenseurParOrdre;
+import ascenseur.traitement.strategie.IStrategieAscenseur;
 
 import java.util.LinkedList;
 

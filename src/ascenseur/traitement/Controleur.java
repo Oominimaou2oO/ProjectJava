@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import ascenseur.traitement.Fabrique.*;
-import ascenseur.traitement.Strategie.IStrategieRequete;
-import ascenseur.traitement.Strategie.StrategieRequeteArbitraire;
+import ascenseur.traitement.fabrique.*;
+import ascenseur.traitement.strategie.IStrategieRequete;
+import ascenseur.traitement.strategie.StrategieRequeteArbitraire;
 
 public class Controleur {
 

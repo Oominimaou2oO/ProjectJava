@@ -1,4 +1,4 @@
-package ascenseur.traitement.Strategie;
+package ascenseur.traitement.strategie;
 
 /**
  * Created by Kevin on 11/01/2016.

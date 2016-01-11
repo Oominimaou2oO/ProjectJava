@@ -1,4 +1,4 @@
-package ascenseur.traitement.Fabrique;
+package ascenseur.traitement.fabrique;
 
 import ascenseur.traitement.Ascenseur;
 
