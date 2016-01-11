@@ -32,6 +32,10 @@ public class Controleur {
         requetesExternes.add(new RequeteExterne(etage, direction));
     } // creerRequeteExterne()
 
+    public void ajouterAscenseur(Ascenseur ascenseur) {
+        ascenseurs.add(ascenseur);
+    }
+
     public void choisirAscenseur() {
         strategieRequete.choisirAscenseur();
     } // choisirAscenseur()
@@ -61,7 +65,7 @@ public class Controleur {
         System.out.println("Création de " + nombreAscenseurs + " ascenseurs...");
         IFabrique fab = new FabriqueAscenseur();//ASCENSEUR BASIQUE
         for (int i = 0; i < nombreAscenseurs; ++i) {
-            Controleur.getInstance().ascenseurs.add(fab.creer());
+            Controleur.getInstance().ajouterAscenseur(fab.creer());
         }
         System.out.println("Création terminé !\n");
         String line = "";
