@@ -1,6 +1,5 @@
 package ascenseur.affichage;
 
-import ascenseur.traitement.ascenseur.AscenseurBasique;
 import ascenseur.traitement.ascenseur.IAscenseur;
 import ascenseur.traitement.requete.RequeteExterne;
 

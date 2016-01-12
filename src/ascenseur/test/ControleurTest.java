@@ -1,7 +1,7 @@
 package ascenseur.test;
 
 import ascenseur.traitement.Controleur;
-import ascenseur.traitement.fabrique.FabriqueAscenseur;
+import ascenseur.traitement.fabrique.FabriqueAscenseurBasique;
 import ascenseur.traitement.fabrique.IFabrique;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -32,7 +32,7 @@ public class ControleurTest {
 
     @Test
     public void testAjoutAscenseur() {
-        IFabrique fab = new FabriqueAscenseur();
+        IFabrique fab = new FabriqueAscenseurBasique();
         controleur.ajouterAscenseur(fab.creer());
         assertEquals(1,controleur.getAscenseurs().size());
     } // testAjoutAscenseur()
@@ -41,7 +41,7 @@ public class ControleurTest {
     public void testChoisirAscenseur() {
         //ICI VU QUE LA STRATEGIE EST StrategieRequeteArbitraire
         //L'ascenseurBasique 0 doit avoir 2 requetes !
-        IFabrique fab = new FabriqueAscenseur();
+        IFabrique fab = new FabriqueAscenseurBasique();
         controleur.ajouterAscenseur(fab.creer());
         controleur.ajouterAscenseur(fab.creer());
 

@@ -54,7 +54,7 @@ public class VueSimplifiee implements Vue {
                 etagesPressed.add(requete.getEtage());
             }
 			
-			affichage = "AscenseurBasique " + (i + 1) + " : ";
+			affichage = "Ascenseur " + (i + 1) + " : ";
 			for(int j = 0; j < nombreEtages; ++j) {
 				if(etagesPressed.contains(j))
 					affichage += "(" + j + ") ";
@@ -91,7 +91,7 @@ public class VueSimplifiee implements Vue {
 				default:
 					etat = "Immobile fermé";
 			}
-			System.out.println("AscenseurBasique " + (i + 1));
+			System.out.println("Ascenseur " + (i + 1));
 			System.out.println("Etat : " + etat);
             int etage;
             for(;;){

@@ -3,7 +3,7 @@ package ascenseur;
 import ascenseur.affichage.Vue;
 import ascenseur.affichage.VueSimplifiee;
 import ascenseur.traitement.Controleur;
-import ascenseur.traitement.fabrique.FabriqueAscenseur;
+import ascenseur.traitement.fabrique.FabriqueAscenseurBasique;
 import ascenseur.traitement.fabrique.IFabrique;
 
 import java.io.BufferedReader;
@@ -81,7 +81,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        IFabrique fabrique = new FabriqueAscenseur(); // AscenseurBasique basique
+        IFabrique fabrique = new FabriqueAscenseurBasique(); // AscenseurBasique basique
         Application application = new Application();
 
         Scanner inputScanner = new Scanner(System.in);

@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Kevin on 07/01/2016.
  */
-public class FabriqueAscenseurBasiqueTest {
+public class FabriqueAscenseurTest {
 
     private static IFabrique fabMusique;
     private static IFabrique fabVitesse;
