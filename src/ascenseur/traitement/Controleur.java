@@ -15,7 +15,7 @@ public class Controleur {
 
     private Controleur() {
         strategieRequete = new StrategieRequeteArbitraire();
-    } // Constructor
+    } // Constructeur
 
     public static Controleur getInstance() {
         return instance;
@@ -46,4 +46,5 @@ public class Controleur {
         for(Ascenseur ascenseur : ascenseurs)
             ascenseur.action();
     } // update()
+
 }

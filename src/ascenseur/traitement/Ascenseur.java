@@ -6,6 +6,7 @@ import ascenseur.traitement.strategie.IStrategieAscenseur;
 import java.util.LinkedList;
 
 public class Ascenseur {
+
     private int etat;
     private int etage;
     private boolean bloquer;
@@ -19,7 +20,7 @@ public class Ascenseur {
         this.etat = Constantes.IMMOBILE_FERMER;
         this.etage = 0;
         this.bloquer = false;
-    } // Constructor
+    } // Constructeur
 
     public boolean bloquer() {
         if (bloquer) return false;
@@ -102,11 +103,17 @@ public class Ascenseur {
         return affichage;
     } // toString()
 
-    public void setStrategie(IStrategieAscenseur strategie) { this.strategie = strategie; }
+    public void setStrategie(IStrategieAscenseur strategie) {
+        this.strategie = strategie;
+    } // setStrategie()
 
-    public void setEtat(int etat) { this.etat = etat; }
+    public void setEtat(int etat) {
+        this.etat = etat;
+    } // setEtat()
 
-    public void setEtage(int etage) { this.etage = etage; }
+    public void setEtage(int etage) {
+        this.etage = etage;
+    } //setEtage()
 
     public int getEtage() {
         return this.etage;
@@ -126,5 +133,6 @@ public class Ascenseur {
 
     public String getLibelle() {
         return libelle;
-    }
+    } // getLibelle()
+
 }

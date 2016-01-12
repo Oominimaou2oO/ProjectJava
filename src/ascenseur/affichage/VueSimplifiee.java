@@ -11,13 +11,13 @@ import java.util.Map;
 import ascenseur.traitement.*;
 
 public class VueSimplifiee implements Vue {
+
 	public void getVueCoupe(List<Ascenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
 		String affichage = "            ";
 		System.out.println("VUE EN COUPE");
 
-		for(int i = 0; i < ascenseurs.size(); ++i) {
+		for(int i = 0; i < ascenseurs.size(); ++i)
 			affichage += "Ascenseur " + (i + 1) + "    ";
-		}
 		
 		System.out.println(affichage + "    Boutons activés");
 		for(int i = nombreEtages - 1; i >= 0; --i) {
@@ -62,8 +62,7 @@ public class VueSimplifiee implements Vue {
 				affichage += "Bloqué !";
 			System.out.println(affichage);
 		}
-		
-	} //getVueCoupe()
+	} // getVueCoupe()
 	
 	public void getVueInteractif(List<Ascenseur> ascenseurs, int nombreEtages) {
 		// Boutons des panneaux de controle (bloquage aussi)

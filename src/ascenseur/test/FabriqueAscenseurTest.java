@@ -21,23 +21,24 @@ public class FabriqueAscenseurTest {
         fabMusique = new FabriqueAscenseurMusique();
         fabVitesse = new FabriqueAscenseurVitesse();
         fabVitesseMusique = new FabriqueAscenseurVitesseMusique();
-    }
+    } // setUpClass()
 
     @Test
     public void testCreerAscenseurMusique() throws Exception {
         Ascenseur asc = fabMusique.creer();
         assertEquals("Ascenseur avec musique & Ascenseur basique",asc.getLibelle());
-    }
+    } // testCreerAscenseurMusique()
 
     @Test
     public void testCreerAscenseurVitesse() throws Exception {
         Ascenseur asc = fabVitesse.creer();
         assertEquals("Ascenseur avec vitesse & Ascenseur basique",asc.getLibelle());
-    }
+    } // testCreerAscenseurVitesse()
 
     @Test
     public void testCreerAscenseurVitesseMusique() throws Exception {
         Ascenseur asc = fabVitesseMusique.creer();
         assertEquals("Ascenseur avec vitesse & Ascenseur avec musique & Ascenseur basique",asc.getLibelle());
-    }
+    } // testCreerAscenseurVitesseMusique()
+
 }

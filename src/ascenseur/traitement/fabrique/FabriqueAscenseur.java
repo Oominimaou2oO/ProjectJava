@@ -10,6 +10,6 @@ public class FabriqueAscenseur implements IFabrique {
     @Override
     public Ascenseur creer() {
         return new Ascenseur();
-    }
+    } // creer()
 
 }

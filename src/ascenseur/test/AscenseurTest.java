@@ -17,21 +17,21 @@ public class AscenseurTest {
         ascenseur = new Ascenseur();
         ascenseur.ajouterRequete(new RequeteInterne(2));
         ascenseur.ajouterRequete(new RequeteInterne(0));
-    }
+    } // setUpClass()
 
     public void testBloquer() throws Exception {
         assertEquals(true,ascenseur.bloquer());
-    }
+    } // testBloquer()
 
     @Test
     public void testDebloquer() throws Exception {
         testBloquer();
         assertEquals(true,ascenseur.debloquer()); // Debloque par la suite
-    }
+    } // testDebloquer()
 
     public void testEtat(int exceptedEtat, int etat) throws Exception {
         assertEquals(exceptedEtat,etat);
-    }
+    } // testEtat()
 
     @Test
     public void testAction() throws Exception {
@@ -67,5 +67,5 @@ public class AscenseurTest {
         ascenseur.action();
         testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
         System.out.println(ascenseur);
-    }
+    } // testAction()
 }

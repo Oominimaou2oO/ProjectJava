@@ -18,25 +18,25 @@ public class ControleurTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         controleur = Controleur.getInstance();
-    }
+    } // setUpClass()
 
     @Test
     public void testUnicité() {
         assertEquals(controleur,Controleur.getInstance());
-    }
+    } // testUnicité()
 
     @Test
     public void testAjoutRequeteExterne() {
         controleur.creerRequeteExterne(0, 2);
         assertEquals(1,controleur.getRequetesExternes().size());
-    }
+    } // testAjoutRequeteExterne()
 
     @Test
     public void testAjoutAscenseur() {
         IFabrique fab = new FabriqueAscenseur();
         controleur.ajouterAscenseur(fab.creer());
         assertEquals(1,controleur.getAscenseurs().size());
-    }
+    } // testAjoutAscenseur()
 
     @Test
     public void testChoisirAscenseur() {
@@ -54,7 +54,6 @@ public class ControleurTest {
 
         assertEquals(2,controleur.getAscenseurs().get(0).getRequetes().size());
         assertEquals(0,controleur.getRequetesExternes().size());
-    }
-
+    } // testChoisirAscenseur()
 
 }

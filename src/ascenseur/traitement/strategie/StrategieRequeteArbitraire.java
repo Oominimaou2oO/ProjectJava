@@ -14,5 +14,6 @@ public class StrategieRequeteArbitraire implements IStrategieRequete {
             controleur.getAscenseurs().get(i % controleur.getAscenseurs().size()).ajouterRequete(controleur.getRequetesExternes().get(i));
         }
         controleur.getRequetesExternes().clear();
-    } // choisirAscenseur(
+    } // choisirAscenseur()
+
 }

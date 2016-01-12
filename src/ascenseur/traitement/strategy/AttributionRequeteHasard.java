@@ -9,10 +9,9 @@ import java.util.Random;
 
 
 public class AttributionRequeteHasard implements AttributionDesRequetes {
+
     @Override
     public void choisirAscenseur(Collection<Ascenseur> ascenseurs, Collection<Requete> requetes) {
-
-
         for (Requete r : requetes) {
             int index = new Random().nextInt(ascenseurs.size());
             Iterator<Ascenseur> it = ascenseurs.iterator();
@@ -24,10 +23,7 @@ public class AttributionRequeteHasard implements AttributionDesRequetes {
                 it.next().ajouterRequete(r);
             }
         }
-
         requetes.clear();
-
-    }
-
+    } // choisirAscenseur()
 
 }
