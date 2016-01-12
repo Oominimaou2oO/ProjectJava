@@ -1,7 +1,8 @@
 package ascenseur.affichage;
 
-import ascenseur.traitement.Ascenseur;
-import ascenseur.traitement.RequeteExterne;
+import ascenseur.traitement.ascenseur.AscenseurBasique;
+import ascenseur.traitement.ascenseur.IAscenseur;
+import ascenseur.traitement.requete.RequeteExterne;
 
 import java.util.List;
 
@@ -10,8 +11,8 @@ import java.util.List;
  */
 public interface Vue {
 
-    void getVueCoupe(List<Ascenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages);
-    void getVueInteractif(List<Ascenseur> ascenseurs, int nombreEtages);
-    void getVueRequetes(List<Ascenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages);
+    void getVueCoupe(List<IAscenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages);
+    void getVueInteractif(List<IAscenseur> ascenseurs, int nombreEtages);
+    void getVueRequetes(List<IAscenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages);
 
 }

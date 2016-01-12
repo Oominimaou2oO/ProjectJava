@@ -1,6 +1,6 @@
 package ascenseur.traitement.fabrique;
 
-import ascenseur.traitement.Ascenseur;
+import ascenseur.traitement.ascenseur.AscenseurBasique;
 
 /**
  * Created by Kevin on 07/01/2016.
@@ -8,8 +8,8 @@ import ascenseur.traitement.Ascenseur;
 public class FabriqueAscenseur implements IFabrique {
 
     @Override
-    public Ascenseur creer() {
-        return new Ascenseur();
+    public AscenseurBasique creer() {
+        return new AscenseurBasique();
     } // creer()
 
 }

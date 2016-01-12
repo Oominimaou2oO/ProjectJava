@@ -3,13 +3,16 @@ package ascenseur.traitement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import ascenseur.traitement.ascenseur.IAscenseur;
+import ascenseur.traitement.requete.RequeteExterne;
 import ascenseur.traitement.strategie.IStrategieRequete;
 import ascenseur.traitement.strategie.StrategieRequeteArbitraire;
 
 public class Controleur {
 
     private static Controleur instance = new Controleur();
-    private List<Ascenseur> ascenseurs = new ArrayList<>();
+    private List<IAscenseur> ascenseurBasiques = new ArrayList<>();
     private LinkedList<RequeteExterne> requetesExternes = new LinkedList<>();
     private IStrategieRequete strategieRequete;
 
@@ -25,8 +28,8 @@ public class Controleur {
         requetesExternes.add(new RequeteExterne(etage, direction));
     } // creerRequeteExterne()
 
-    public void ajouterAscenseur(Ascenseur ascenseur) {
-        ascenseurs.add(ascenseur);
+    public void ajouterAscenseur(IAscenseur ascenseurBasique) {
+        ascenseurBasiques.add(ascenseurBasique);
     } // ajouterAscenseur()
 
     public void choisirAscenseur() {
@@ -37,14 +40,14 @@ public class Controleur {
         return requetesExternes;
     } // getRequetesExternes()
 
-    public List<Ascenseur> getAscenseurs() {
-        return ascenseurs;
-    } // getAscenseurs()
+    public List<IAscenseur> getAscenseurs() {
+        return ascenseurBasiques;
+    } // getAscenseurBasiques()
 
     public void update() {
         choisirAscenseur();
-        for(Ascenseur ascenseur : ascenseurs)
-            ascenseur.action();
+        for(IAscenseur ascenseurBasique : ascenseurBasiques)
+            ascenseurBasique.action();
     } // update()
 
 }

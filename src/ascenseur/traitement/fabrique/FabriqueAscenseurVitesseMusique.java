@@ -1,8 +1,9 @@
 package ascenseur.traitement.fabrique;
 
-import ascenseur.traitement.Ascenseur;
-import ascenseur.traitement.AscenseurAvecAugmentationVitesse;
-import ascenseur.traitement.AscenseurAvecMusiqueAmbiance;
+import ascenseur.traitement.ascenseur.AscenseurBasique;
+import ascenseur.traitement.ascenseur.AscenseurAvecVitesse;
+import ascenseur.traitement.ascenseur.AscenseurAvecMusique;
+import ascenseur.traitement.ascenseur.IAscenseur;
 
 /**
  * Created by Kevin on 07/01/2016.
@@ -10,8 +11,8 @@ import ascenseur.traitement.AscenseurAvecMusiqueAmbiance;
 public class FabriqueAscenseurVitesseMusique implements IFabrique {
 
     @Override
-    public Ascenseur creer() {
-        return new AscenseurAvecAugmentationVitesse(new AscenseurAvecMusiqueAmbiance(new Ascenseur()));
+    public IAscenseur creer() {
+        return new AscenseurAvecVitesse(new AscenseurAvecMusique(new AscenseurBasique()));
     } // creer()
 
 }

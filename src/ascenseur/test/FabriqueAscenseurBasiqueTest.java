@@ -1,6 +1,6 @@
 package ascenseur.test;
 
-import ascenseur.traitement.Ascenseur;
+import ascenseur.traitement.ascenseur.IAscenseur;
 import ascenseur.traitement.fabrique.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Kevin on 07/01/2016.
  */
-public class FabriqueAscenseurTest {
+public class FabriqueAscenseurBasiqueTest {
 
     private static IFabrique fabMusique;
     private static IFabrique fabVitesse;
@@ -25,20 +25,20 @@ public class FabriqueAscenseurTest {
 
     @Test
     public void testCreerAscenseurMusique() throws Exception {
-        Ascenseur asc = fabMusique.creer();
-        assertEquals("Ascenseur avec musique & Ascenseur basique",asc.getLibelle());
+        IAscenseur asc = fabMusique.creer();
+        assertEquals("Ascenseur basique avec musique",asc.getLibelle());
     } // testCreerAscenseurMusique()
 
     @Test
     public void testCreerAscenseurVitesse() throws Exception {
-        Ascenseur asc = fabVitesse.creer();
-        assertEquals("Ascenseur avec vitesse & Ascenseur basique",asc.getLibelle());
+        IAscenseur asc = fabVitesse.creer();
+        assertEquals("Ascenseur basique avec vitesse",asc.getLibelle());
     } // testCreerAscenseurVitesse()
 
     @Test
     public void testCreerAscenseurVitesseMusique() throws Exception {
-        Ascenseur asc = fabVitesseMusique.creer();
-        assertEquals("Ascenseur avec vitesse & Ascenseur avec musique & Ascenseur basique",asc.getLibelle());
+        IAscenseur asc = fabVitesseMusique.creer();
+        assertEquals("Ascenseur basique avec musique avec vitesse",asc.getLibelle());
     } // testCreerAscenseurVitesseMusique()
 
 }

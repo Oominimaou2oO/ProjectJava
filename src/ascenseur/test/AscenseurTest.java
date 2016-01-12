@@ -1,6 +1,8 @@
 package ascenseur.test;
 
-import ascenseur.traitement.*;
+import ascenseur.traitement.ascenseur.AscenseurBasique;
+import ascenseur.traitement.requete.RequeteInterne;
+import ascenseur.traitement.util.Constantes;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -10,23 +12,24 @@ import static org.junit.Assert.*;
  */
 public class AscenseurTest {
 
-    private static Ascenseur ascenseur;
+    private static AscenseurBasique ascenseurBasique;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        ascenseur = new Ascenseur();
-        ascenseur.ajouterRequete(new RequeteInterne(2));
-        ascenseur.ajouterRequete(new RequeteInterne(0));
+        ascenseurBasique = new AscenseurBasique();
+        ascenseurBasique.ajouterRequete(new RequeteInterne(2));
+        ascenseurBasique.ajouterRequete(new RequeteInterne(0));
     } // setUpClass()
 
     public void testBloquer() throws Exception {
-        assertEquals(true,ascenseur.bloquer());
+        ascenseurBasique.bloquer();
+        assertEquals(true, ascenseurBasique.isBloqued());
     } // testBloquer()
 
     @Test
     public void testDebloquer() throws Exception {
-        testBloquer();
-        assertEquals(true,ascenseur.debloquer()); // Debloque par la suite
+        ascenseurBasique.debloquer();
+        assertEquals(false, ascenseurBasique.isBloqued()); // Debloque par la suite
     } // testDebloquer()
 
     public void testEtat(int exceptedEtat, int etat) throws Exception {
@@ -36,36 +39,36 @@ public class AscenseurTest {
     @Test
     public void testAction() throws Exception {
         // IL MONTE EN HAUT (PREMIER REQUETE)
-        testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
-        System.out.println(ascenseur);
-        assertEquals(true,!ascenseur.getRequetes().isEmpty());
-        ascenseur.action();
-        testEtat(Constantes.MOUVEMENT_VERS_LE_HAUT,ascenseur.getEtat());
-        System.out.println(ascenseur);
-        ascenseur.action();
-        testEtat(Constantes.MOUVEMENT_VERS_LE_HAUT,ascenseur.getEtat());
-        System.out.println(ascenseur);
-        ascenseur.action();
-        testEtat(Constantes.IMMOBILE_OUVERT,ascenseur.getEtat());
-        System.out.println(ascenseur);
-        ascenseur.action();
-        testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
-        System.out.println(ascenseur);
+        testEtat(Constantes.IMMOBILE_FERMER, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
+        assertEquals(true,!ascenseurBasique.getRequetes().isEmpty());
+        ascenseurBasique.action();
+        testEtat(Constantes.MOUVEMENT_VERS_LE_HAUT, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
+        ascenseurBasique.action();
+        testEtat(Constantes.MOUVEMENT_VERS_LE_HAUT, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
+        ascenseurBasique.action();
+        testEtat(Constantes.IMMOBILE_OUVERT, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
+        ascenseurBasique.action();
+        testEtat(Constantes.IMMOBILE_FERMER, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
 
 
         // IL DESCEND EN BAS (SECONDE REQUETE)
-        assertEquals(true,!ascenseur.getRequetes().isEmpty());
-        ascenseur.action();
-        testEtat(Constantes.MOUVEMENT_VERS_LE_BAS,ascenseur.getEtat());
-        System.out.println(ascenseur);
-        ascenseur.action();
-        testEtat(Constantes.MOUVEMENT_VERS_LE_BAS,ascenseur.getEtat());
-        System.out.println(ascenseur);
-        ascenseur.action();
-        testEtat(Constantes.IMMOBILE_OUVERT,ascenseur.getEtat());
-        System.out.println(ascenseur);
-        ascenseur.action();
-        testEtat(Constantes.IMMOBILE_FERMER,ascenseur.getEtat());
-        System.out.println(ascenseur);
+        assertEquals(true,!ascenseurBasique.getRequetes().isEmpty());
+        ascenseurBasique.action();
+        testEtat(Constantes.MOUVEMENT_VERS_LE_BAS, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
+        ascenseurBasique.action();
+        testEtat(Constantes.MOUVEMENT_VERS_LE_BAS, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
+        ascenseurBasique.action();
+        testEtat(Constantes.IMMOBILE_OUVERT, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
+        ascenseurBasique.action();
+        testEtat(Constantes.IMMOBILE_FERMER, ascenseurBasique.getEtat());
+        System.out.println(ascenseurBasique);
     } // testAction()
 }

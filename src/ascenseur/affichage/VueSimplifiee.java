@@ -4,20 +4,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import ascenseur.traitement.*;
+import ascenseur.traitement.ascenseur.AscenseurBasique;
+import ascenseur.traitement.ascenseur.IAscenseur;
+import ascenseur.traitement.requete.Requete;
+import ascenseur.traitement.requete.RequeteExterne;
+import ascenseur.traitement.util.Constantes;
 
 public class VueSimplifiee implements Vue {
 
-	public void getVueCoupe(List<Ascenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
+	public void getVueCoupe(List<IAscenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
 		String affichage = "            ";
 		System.out.println("VUE EN COUPE");
 
 		for(int i = 0; i < ascenseurs.size(); ++i)
-			affichage += "Ascenseur " + (i + 1) + "    ";
+			affichage += "Ascenseurs " + (i + 1) + "    ";
 		
 		System.out.println(affichage + "    Boutons activés");
 		for(int i = nombreEtages - 1; i >= 0; --i) {
@@ -25,7 +28,7 @@ public class VueSimplifiee implements Vue {
 			for(int j = 0; j < 10  - Integer.toString(i).length(); ++j) {
 				affichage += " ";
 			}
-			for(Ascenseur ascenseur : ascenseurs) {
+			for(IAscenseur ascenseur : ascenseurs) {
 				if(ascenseur.getEtage() == i) {
 					affichage += ascenseur + "            ";
 				}
@@ -41,9 +44,9 @@ public class VueSimplifiee implements Vue {
 			System.out.println(affichage);
 		}
 		
-		System.out.println("\nPanneaux de controle des ascenseurs (Bouton activé) : ");
+		System.out.println("\nPanneaux de controle des Ascenseurs (Bouton activé) : ");
 		List<Integer> etagesPressed = new ArrayList<>();
-        Ascenseur ascenseur;
+        IAscenseur ascenseur;
 		for(int i = 0; i < ascenseurs.size(); ++ i) {
 			etagesPressed.clear();
 			ascenseur = ascenseurs.get(i);
@@ -51,7 +54,7 @@ public class VueSimplifiee implements Vue {
                 etagesPressed.add(requete.getEtage());
             }
 			
-			affichage = "Ascenseur " + (i + 1) + " : ";
+			affichage = "AscenseurBasique " + (i + 1) + " : ";
 			for(int j = 0; j < nombreEtages; ++j) {
 				if(etagesPressed.contains(j))
 					affichage += "(" + j + ") ";
@@ -64,17 +67,17 @@ public class VueSimplifiee implements Vue {
 		}
 	} // getVueCoupe()
 	
-	public void getVueInteractif(List<Ascenseur> ascenseurs, int nombreEtages) {
+	public void getVueInteractif(List<IAscenseur> ascenseurs, int nombreEtages) {
 		// Boutons des panneaux de controle (bloquage aussi)
 		System.out.println("AJOUTER DES REQUÊTES INTERNES");
 
-		Ascenseur ascenseur;
+		IAscenseur ascenseur;
 
 		String etat;
         String line;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		for(int i = 0; i < ascenseurs.size(); ++i) {
-			ascenseur = ascenseurs.get(i);
+            ascenseur = ascenseurs.get(i);
 			switch (ascenseur.getEtat()) {
 				case Constantes.IMMOBILE_OUVERT:
 					etat = "Immobile ouvert";
@@ -88,7 +91,7 @@ public class VueSimplifiee implements Vue {
 				default:
 					etat = "Immobile fermé";
 			}
-			System.out.println("Ascenseur " + (i + 1));
+			System.out.println("AscenseurBasique " + (i + 1));
 			System.out.println("Etat : " + etat);
             int etage;
             for(;;){
@@ -135,10 +138,10 @@ public class VueSimplifiee implements Vue {
         System.out.println("Ajout de requêtes externes terminées !");
 	} // getVueInteractif()
 
-    public void getVueRequetes(List<Ascenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
+    public void getVueRequetes(List<IAscenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
         List<Requete> requetes;
         String affichage = "LISTE DES REQUÊTES A SATISFAIRE";
-        Ascenseur ascenseur;
+        IAscenseur ascenseur;
 
 		for(int i = 0; i < nombreEtages; ++i) {
             System.out.println("Etage " + i);

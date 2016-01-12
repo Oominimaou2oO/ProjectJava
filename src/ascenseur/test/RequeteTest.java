@@ -1,9 +1,8 @@
 package ascenseur.test;
 
-import ascenseur.traitement.Constantes;
-import ascenseur.traitement.Requete;
-import ascenseur.traitement.RequeteExterne;
-import ascenseur.traitement.RequeteInterne;
+import ascenseur.traitement.util.Constantes;
+import ascenseur.traitement.requete.RequeteExterne;
+import ascenseur.traitement.requete.RequeteInterne;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
