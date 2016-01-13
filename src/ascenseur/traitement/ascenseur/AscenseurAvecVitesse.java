@@ -8,6 +8,6 @@ public class AscenseurAvecVitesse extends DecorateurAscenseur {
 
     @Override
     public String getLibelle() {
-        return super.getLibelle() + " avec vitesse";
+        return this.ascenseur.getLibelle() + " avec vitesse";
     }
 }
