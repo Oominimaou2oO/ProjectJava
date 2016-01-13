@@ -8,6 +8,6 @@ public class AscenseurAvecMusique extends DecorateurAscenseur {
 
 	@Override
 	public String getLibelle() {
-		return super.getLibelle() + " avec musique";
+		return this.ascenseur.getLibelle() + " avec musique";
 	}
 }
