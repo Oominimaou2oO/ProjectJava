@@ -72,7 +72,7 @@ public class AttributionRequetesIntelligente implements AttributionRequetes {
 
 
 
-        int i = 0;
+        int i = -1;
 
 
 
@@ -93,15 +93,15 @@ public class AttributionRequetesIntelligente implements AttributionRequetes {
                     actual = descend;//Fixage du pointeurs de tableau
 
                     pas = -1;//fixage du pas en fonction de la direction de parcours de tableau
-                    i += descend.size() -1;//Rêglage du I en fonction du sens de parcours de tableau
+                    i += descend.size();//Rêglage du I en fonction du sens de parcours de tableau
 
                     break;
 
             }
 
-            for (;(comparator.compare(actual.get(i),r))<0; i+=pas );
+            for (;(comparator.compare(actual.get(i),r))<0 && i >-1 && i<actual.size(); i+=pas );
 
-            if ((pas == 1 && i == 0) || (pas == -1 && i == descend.size() -1)) {
+            if ((pas == 1 && i == -1) || (pas == -1 && i == descend.size() - 1)) {
                 //cas embétant où il n'y a pas d'ascenseur bien placé
                 continue;
             } else
