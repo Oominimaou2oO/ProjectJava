@@ -6,6 +6,9 @@ import java.util.LinkedList;
 
 public abstract class DecorateurAscenseur implements IAscenseur {
 
+	/**
+	 * L'ascenseur qui doit être décoré.
+	 */
 	protected IAscenseur ascenseur;
 
 	@Override

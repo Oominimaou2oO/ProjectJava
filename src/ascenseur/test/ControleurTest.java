@@ -14,22 +14,36 @@ public class ControleurTest {
 
     private static Controleur controleur;
 
+    /**
+     * Permet de définir un comportement de base, afin de procéder à des tests concrets.
+     * @throws Exception
+     */
     @BeforeClass
     public static void setUpClass() throws Exception {
         controleur = Controleur.getInstance();
     } // setUpClass()
 
+    /**
+     * Le but voulu est de vérifier que le controleur est bien unique, et qu'il à uniquement une instance.
+     * @see Controleur
+     */
     @Test
     public void testUnicité() {
         assertEquals(controleur,Controleur.getInstance());
     } // testUnicité()
 
+    /**
+     * Permet de vérifier que l'ajout de requête se passe bien, c'est à dire que le controleur accepte la requête dans sa liste chainée.
+     */
     @Test
     public void testAjoutRequeteExterne() {
         controleur.creerRequeteExterne(0, 2);
         assertEquals(1,controleur.getRequetesExternes().size());
     } // testAjoutRequeteExterne()
 
+    /**
+     * Permet de vérifier que l'ajout d'ascenseur, c'est à dire que la création et l'ajout de l'ascenseur dans le controleur est bien effectué.
+     */
     @Test
     public void testAjoutAscenseur() {
         IFabrique fab = new FabriqueAscenseurBasique();
@@ -37,6 +51,10 @@ public class ControleurTest {
         assertEquals(1,controleur.getAscenseurs().size());
     } // testAjoutAscenseur()
 
+    /**
+     * Permet de vérifier que le controleur choisisse le bon ascenseur selon sa stratégie.
+     * @see ascenseur.traitement.strategie.AttributionDesRequetes
+     */
     @Test
     public void testChoisirAscenseur() {
         //ICI VU QUE LA STRATEGIE EST StrategieRequeteArbitraire

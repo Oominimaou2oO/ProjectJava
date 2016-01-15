@@ -15,13 +15,21 @@ import java.util.Scanner;
  * Created by Alexandre on 11/01/2016.
  */
 public class Application {
+
     private boolean isRunning;
     private int nombreEtages;
 
+    /**
+     * Constructeur
+     */
     private Application() {
         isRunning = true;
     }
 
+    /**
+     * Permet de mettre à jour les vues.
+     * @see Vue
+     */
     private void update() {
         Controleur controleur = Controleur.getInstance();
 
@@ -72,6 +80,10 @@ public class Application {
         }
     }
 
+    /**
+     * Permet de savoir si l'application est en cours d'éxécution.
+     * @return Si l'application est en cours : TRUE, sinon FALSE.
+     */
     private boolean isRunning() {
         return isRunning;
     }
@@ -80,8 +92,11 @@ public class Application {
 
     }
 
+    /**
+     * Exécution principale du programme.
+     */
     public static void main(String[] args) {
-        IFabrique fabrique = new FabriqueAscenseurBasique(); // AscenseurBasique basique
+        IFabrique fabrique = new FabriqueAscenseurBasique();
         Application application = new Application();
 
         Scanner inputScanner = new Scanner(System.in);
