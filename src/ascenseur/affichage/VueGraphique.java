@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 public class VueGraphique extends JFrame {
 
+	private static final long serialVersionUID = 3602023579271229871L;
 	private JPanel contentPane;
 
 	/**

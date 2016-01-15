@@ -13,7 +13,6 @@ import ascenseur.traitement.requete.RequeteExterne;
 import ascenseur.traitement.util.Constantes;
 
 public class VueConsole implements Vue {
-
 	public void getVueCoupe(List<IAscenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
 		String affichage = "            ";
 		System.out.println("VUE EN COUPE");
