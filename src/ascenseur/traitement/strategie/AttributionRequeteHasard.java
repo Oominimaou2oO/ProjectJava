@@ -14,13 +14,9 @@ public class AttributionRequeteHasard implements AttributionDesRequetes {
         for (Requete r : requetesExternes) {
             int index = new Random().nextInt(ascenseurs.size());
             Iterator<IAscenseur> it = ascenseurs.iterator();
-            if (index == 0) {
-                it.next().ajouterRequete(r);
-            }
-            else {
-                for (; --index != 0 && it.hasNext(); it.next()) ;
-                it.next().ajouterRequete(r);
-            }
+            for (int i = index; i != 0 && it.hasNext();it.next())
+                i -=1;
+            it.next().ajouterRequete(r);
         }
         requetesExternes.clear();
     } // choisirAscenseur()
