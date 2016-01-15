@@ -1,22 +1,32 @@
 package ascenseur.traitement.strategie;
 
 import ascenseur.traitement.ascenseur.IAscenseur;
+import ascenseur.traitement.requete.Requete;
 import ascenseur.traitement.requete.RequeteExterne;
 
 import java.util.Collection;
+import java.util.Iterator;
 
-/**
- * Created by h13002021 on 12/01/16.
- */
+
 public class AttributionRequeteArbitrairement implements AttributionDesRequetes {
 
+    private static int shift = 0;
 
     @Override
     public void choisirAscenseur(Collection<IAscenseur> ascenseurs, Collection<RequeteExterne> requetesExternes) {
-        /*for (int i = 0 ; i < requetesExternes.size() ; ++i)
-            ascenseurs.get(i % ascenseurs.size()).ajouterRequete(requetesExternes.get(i));
+
+        shift = shift+1%ascenseurs.size();
+        int index = shift;
+        for (Requete r : requetesExternes) {
+            index = index %ascenseurs.size();
+            Iterator<IAscenseur> it = ascenseurs.iterator();
+
+            for (int i=index; i != 0 && it.hasNext(); it.next())
+                i-=1;
+            it.next().ajouterRequete(r);
+            ++index;
+        }
         requetesExternes.clear();
-        */
     }
 
 }
