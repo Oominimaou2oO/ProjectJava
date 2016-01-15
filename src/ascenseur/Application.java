@@ -1,15 +1,14 @@
 package ascenseur;
 
-import ascenseur.affichage.Vue;
-import ascenseur.affichage.VueSimplifiee;
-import ascenseur.traitement.Controleur;
-import ascenseur.traitement.fabrique.FabriqueAscenseurBasique;
-import ascenseur.traitement.fabrique.IFabrique;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+
+import ascenseur.affichage.Vue;
+import ascenseur.affichage.VueConsole;
+import ascenseur.traitement.Controleur;
+import ascenseur.traitement.fabrique.FabriqueAscenseurBasique;
+import ascenseur.traitement.fabrique.IFabrique;
 
 /**
  * Created by Alexandre on 11/01/2016.
@@ -25,7 +24,7 @@ public class Application {
     private void update() {
         Controleur controleur = Controleur.getInstance();
 
-        Vue vue = new VueSimplifiee();
+        Vue vue = new VueConsole();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String inputString = "";
         int vueChoix;
@@ -84,19 +83,38 @@ public class Application {
         IFabrique fabrique = new FabriqueAscenseurBasique(); // AscenseurBasique basique
         Application application = new Application();
 
-        Scanner inputScanner = new Scanner(System.in);
-
+        String line;
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        
         int nombreAscenseurs;
 
         System.out.println("Initialisation");
-        System.out.println("Nombre d'étages à desservir :");
 
-        application.nombreEtages = inputScanner.nextInt();
+        for(;;){
+            System.out.println("Nombre d'étages à desservir :");
+            try {
+                line = bufferedReader.readLine();
+                application.nombreEtages = Integer.parseInt(line);
+                break;
+            }
+            catch (IOException|NumberFormatException e) {
+                System.out.println("Erreur de saisie !");
+            }
+        }
 
         System.out.println("Nombre d'étages fixé à " + application.nombreEtages + ".");
-        System.out.println("Nombre d'ascenseurs :");
 
-        nombreAscenseurs = inputScanner.nextInt();
+        for(;;){
+            System.out.println("Nombre d'ascenseurs :");
+            try {
+                line = bufferedReader.readLine();
+                nombreAscenseurs = Integer.parseInt(line);
+                break;
+            }
+            catch (IOException|NumberFormatException e) {
+                System.out.println("Erreur de saisie !");
+            }
+        }
 
         System.out.println("Création de " + nombreAscenseurs + " ascenseurs...");
 

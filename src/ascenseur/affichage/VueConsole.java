@@ -6,14 +6,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import ascenseur.traitement.*;
-import ascenseur.traitement.ascenseur.AscenseurBasique;
+import ascenseur.traitement.Controleur;
 import ascenseur.traitement.ascenseur.IAscenseur;
 import ascenseur.traitement.requete.Requete;
 import ascenseur.traitement.requete.RequeteExterne;
 import ascenseur.traitement.util.Constantes;
 
-public class VueSimplifiee implements Vue {
+public class VueConsole implements Vue {
 
 	public void getVueCoupe(List<IAscenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
 		String affichage = "            ";
@@ -140,8 +139,9 @@ public class VueSimplifiee implements Vue {
 
     public void getVueRequetes(List<IAscenseur> ascenseurs, List<RequeteExterne> requetesExternes, int nombreEtages) {
         List<Requete> requetes;
-        String affichage = "LISTE DES REQUÊTES A SATISFAIRE";
         IAscenseur ascenseur;
+        
+        System.out.println("LISTE DES REQUÊTES A SATISFAIRE");
 
 		for(int i = 0; i < nombreEtages; ++i) {
             System.out.println("Etage " + i);
@@ -159,7 +159,6 @@ public class VueSimplifiee implements Vue {
                     }
                 }
             }
-            System.out.println("");
         }
     } // getVueRequetes()
 }
