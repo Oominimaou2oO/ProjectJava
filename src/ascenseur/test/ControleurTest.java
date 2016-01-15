@@ -3,6 +3,7 @@ package ascenseur.test;
 import ascenseur.traitement.Controleur;
 import ascenseur.traitement.fabrique.FabriqueAscenseurBasique;
 import ascenseur.traitement.fabrique.IFabrique;
+import ascenseur.traitement.strategie.AttributionRequetes;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -53,7 +54,7 @@ public class ControleurTest {
 
     /**
      * Permet de vérifier que le controleur choisisse le bon ascenseur selon sa stratégie.
-     * @see ascenseur.traitement.strategie.AttributionDesRequetes
+     * @see AttributionRequetes
      */
     @Test
     public void testChoisirAscenseur() {

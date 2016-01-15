@@ -1,26 +1,26 @@
 package ascenseur.traitement;
 
+import ascenseur.traitement.ascenseur.IAscenseur;
+import ascenseur.traitement.requete.RequeteExterne;
+import ascenseur.traitement.strategie.AttributionRequetes;
+import ascenseur.traitement.strategie.AttributionRequetesIntelligente;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import ascenseur.traitement.ascenseur.IAscenseur;
-import ascenseur.traitement.requete.RequeteExterne;
-import ascenseur.traitement.strategie.AttributionDesRequetes;
-import ascenseur.traitement.strategie.AttributionRequeteArbitrairement;
 
 public class Controleur {
 
     private static Controleur instance = new Controleur();
     private List<IAscenseur> ascenseurs = new ArrayList<>();
     private LinkedList<RequeteExterne> requetesExternes = new LinkedList<>();
-    private AttributionDesRequetes strategieRequete;
+    private AttributionRequetes strategieRequete;
 
     /**
      * Constructeur privé, permettant le singleton.
      */
     private Controleur() {
-        strategieRequete = new AttributionRequeteArbitrairement();
+        strategieRequete = new AttributionRequetesIntelligente();
     } // Constructeur
 
     /**
@@ -51,7 +51,7 @@ public class Controleur {
 
     /**
      * Suivant la stratégie, le controleur va attribué les requêtes externes aux ascenseurs, suivant le comportement écrit.
-     * @see AttributionDesRequetes
+     * @see AttributionRequetes
      */
     public void choisirAscenseur() {
         strategieRequete.choisirAscenseur(ascenseurs,requetesExternes);

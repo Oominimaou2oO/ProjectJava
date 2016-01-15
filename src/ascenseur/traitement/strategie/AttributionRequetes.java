@@ -5,7 +5,7 @@ import ascenseur.traitement.requete.RequeteExterne;
 
 import java.util.Collection;
 
-public interface AttributionDesRequetes {
+public interface AttributionRequetes {
 
     /**
      * Permet d'assigner les requêtes externes aux bons ascenseurs.

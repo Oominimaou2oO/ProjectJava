@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 
-public class AttributionIntelligente implements AttributionDesRequetes {
+public class AttributionRequetesIntelligente implements AttributionRequetes {
     class EtageAscenseurComparator implements Comparator<IAscenseur> {
         @Override
         public int compare(IAscenseur iAscenseur, IAscenseur t1) {
