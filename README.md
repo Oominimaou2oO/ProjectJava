@@ -1,3 +1,6 @@
+javac -d bin -cp junit-4.10.jar src/ascenseur/traitement/util/*.java src/ascenseur/traitement/strategie/*.java src/ascenseur/traitement/requete/*.java src/ascenseur/traitement/ascenseur/*.java src/ascenseur/affichage/*.java src/ascenseur/traitement/fabrique/*.java src/ascenseur/traitement/Controleur.java src/ascenseur/Application.java
+
+
 # ProjectJavaYou could make use of the observer pattern. Let your TreeSet implement Observer and let your Student extend Observable. The only change you need to make is to hide the age field by encapsulation so that you have more internal control over the change.
 
 Here's a kickoff example:
