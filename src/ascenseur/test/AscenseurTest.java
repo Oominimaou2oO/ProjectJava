@@ -14,6 +14,10 @@ public class AscenseurTest {
 
     private static AscenseurBasique ascenseurBasique;
 
+    /**
+     * Permet de définir un comportement de base, afin de procéder à des tests concrets.
+     * @throws Exception
+     */
     @BeforeClass
     public static void setUpClass() throws Exception {
         ascenseurBasique = new AscenseurBasique();
@@ -21,21 +25,40 @@ public class AscenseurTest {
         ascenseurBasique.ajouterRequete(new RequeteInterne(0));
     } // setUpClass()
 
+    /**
+     * Permet de vérifier que l'ascenseur subit bien l'action bloqué.
+     * @throws Exception
+     */
+    @Test
     public void testBloquer() throws Exception {
         ascenseurBasique.bloquer();
         assertEquals(true, ascenseurBasique.isBloqued());
     } // testBloquer()
 
+    /**
+     * Permet de vérifier que l'ascenseur subit bien l'action débloqué.
+     * @throws Exception
+     */
     @Test
     public void testDebloquer() throws Exception {
         ascenseurBasique.debloquer();
-        assertEquals(false, ascenseurBasique.isBloqued()); // Debloque par la suite
+        assertEquals(false, ascenseurBasique.isBloqued());
     } // testDebloquer()
 
+    /**
+     * Macro de assertEquals, afin d'aller plus vite.
+     * @param exceptedEtat L'état voulu.
+     * @param etat L'état courant.
+     * @throws Exception
+     */
     public void testEtat(int exceptedEtat, int etat) throws Exception {
         assertEquals(exceptedEtat,etat);
     } // testEtat()
 
+    /**
+     * Permet de vérifier que tout ce passe bien lorsqu'on appele la fonction action() sur l'ascenseur.
+     * @throws Exception
+     */
     @Test
     public void testAction() throws Exception {
         // IL MONTE EN HAUT (PREMIER REQUETE)

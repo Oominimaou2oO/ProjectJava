@@ -14,6 +14,9 @@ public class AscenseurBasique implements IAscenseur {
     private String libelle = "Ascenseur basique";
     private LinkedList<Requete> requetes = new LinkedList<>();
 
+    /**
+     * Constructeur
+     */
     public AscenseurBasique() {
         this.etat = Constantes.IMMOBILE_FERMER;
         this.etage = 0;
@@ -74,6 +77,10 @@ public class AscenseurBasique implements IAscenseur {
         // To Do : Satisfaire les requetes de l'étage actuel
     } // action()
 
+    /**
+     * Permet de modéliser l'état de l'ascenseur de manière textuelle.
+     * @return L'affichage symbolisant sont état.
+     */
     @Override
     public String toString() {
         String affichage;
