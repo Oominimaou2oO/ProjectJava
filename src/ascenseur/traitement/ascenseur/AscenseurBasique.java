@@ -1,5 +1,6 @@
 package ascenseur.traitement.ascenseur;
 
+import ascenseur.traitement.requete.RequeteExterne;
 import ascenseur.traitement.util.Constantes;
 import ascenseur.traitement.requete.Requete;
 import ascenseur.traitement.requete.RequeteInterne;
@@ -12,7 +13,7 @@ public class AscenseurBasique implements IAscenseur {
     private int etage;
     private boolean bloquer;
     private String libelle = "Ascenseur basique";
-    private LinkedList<Requete> requetes = new LinkedList<>();
+    private LinkedList<Requete> requetes = new LinkedList<Requete>();
 
     /**
      * Constructeur
@@ -56,7 +57,8 @@ public class AscenseurBasique implements IAscenseur {
                 }
                 break;
             case Constantes.IMMOBILE_OUVERT:
-                requetes.removeFirst();
+                if(requetes.getFirst().getEtage() == etage)
+                    requetes.removeFirst();
                 if (requetes.isEmpty() || requetes.getFirst().getEtage() != etage) {
                     etat = Constantes.IMMOBILE_FERMER;
                 }
@@ -74,7 +76,13 @@ public class AscenseurBasique implements IAscenseur {
                 }
                 break;
         }
-        // To Do : Satisfaire les requetes de l'étage actuel
+
+        for(int i = 1 ; i < requetes.size() ; ++i) {
+            if(etage == requetes.get(i).getEtage()) {
+                etat = Constantes.IMMOBILE_OUVERT;
+                requetes.remove(i);
+            }
+        }
     } // action()
 
     /**
