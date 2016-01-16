@@ -22,7 +22,7 @@ public class Controleur {
      * Constructeur privé, permettant le singleton.
      */
     private Controleur() {
-        strategieRequete = new AttributionRequetesHasard();
+        strategieRequete = new AttributionRequetesArbitrairement();
     } // Constructeur
 
     /**
