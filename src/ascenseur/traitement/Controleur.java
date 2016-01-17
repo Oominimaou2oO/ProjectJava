@@ -3,6 +3,8 @@ package ascenseur.traitement;
 import ascenseur.traitement.ascenseur.IAscenseur;
 import ascenseur.traitement.requete.RequeteExterne;
 import ascenseur.traitement.strategie.AttributionRequetes;
+import ascenseur.traitement.strategie.AttributionRequetesArbitrairement;
+import ascenseur.traitement.strategie.AttributionRequetesHasard;
 import ascenseur.traitement.strategie.AttributionRequetesIntelligente;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class Controleur {
      * Constructeur privé, permettant le singleton.
      */
     private Controleur() {
-        strategieRequete = new AttributionRequetesIntelligente();
+        strategieRequete = new AttributionRequetesArbitrairement();
     } // Constructeur
 
     /**
