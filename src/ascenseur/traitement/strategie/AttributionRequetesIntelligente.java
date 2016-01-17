@@ -47,6 +47,8 @@ public class AttributionRequetesIntelligente implements AttributionRequetes {
 
         ArrayList<IAscenseur> monte = new ArrayList<>();
         ArrayList<IAscenseur> descend = new ArrayList<>();
+        ArrayList<RequeteExterne> restantes = new ArrayList<>();
+
 
         Comparaison_Requete_Ascenseur comparator = null;//Future Pointeur
         ArrayList<IAscenseur>  actual;//Futur Pointeur
@@ -104,11 +106,16 @@ public class AttributionRequetesIntelligente implements AttributionRequetes {
 
             if ((pas == 1 && i == 0) || (pas == -1 && i == descend.size() - 1)) {
                 //cas embétant où il n'y a pas d'ascenseur bien placé
+                restantes.add(r);
                 continue;
             } else
                 actual.get(i-pas).ajouterRequete(r);
         }
 
+        requetesExternes.clear();
+
+        for (RequeteExterne r : restantes)
+            requetesExternes.add(r);
     }
 
 
