@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import ascenseur.affichage.Vue;
 import ascenseur.affichage.VueConsole;
 import ascenseur.traitement.Controleur;
-import ascenseur.traitement.fabrique.FabriqueAscenseurBasique;
-import ascenseur.traitement.fabrique.IFabrique;
+import ascenseur.traitement.ascenseur.IAscenseur;
+import ascenseur.traitement.fabrique.*;
 
 /**
  * Created by Alexandre on 11/01/2016.
@@ -96,12 +96,12 @@ public class Application {
      */
     public static void main(String[] args) {
         IFabrique fabrique;
+        IAscenseur ascenseur;
         Application application = new Application();
 
         String line;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int choixTypeAscenseur;
-        int nombreAscenseurs;
 
         System.out.println("Initialisation");
 
@@ -117,32 +117,25 @@ public class Application {
             }
         }
 
-        System.out.println("Nombre d'étages fixé à " + application.nombreEtages + ".");
+        System.out.println("Nombre d'étages fixé à " + application.nombreEtages + ".\n");
 
-        for(;;){
-            System.out.println("Nombre d'ascenseurs :");
-            try {
-                line = bufferedReader.readLine();
-                nombreAscenseurs = Integer.parseInt(line);
-                break;
-            }
-            catch (IOException|NumberFormatException e) {
-                System.out.println("Erreur de saisie !");
-            }
-        }
+        System.out.println("Création des ascenseurs...");
 
-        System.out.println("Création de " + nombreAscenseurs + " ascenseurs...");
-
-        for (int i = 0; i < nombreAscenseurs;) {
-            System.out.println("Ascenseur " + (i + 1) + " : ");
+        for (int i = 0; ;) {
+            System.out.println("\nAscenseur " + (i + 1) + " : ");
+            System.out.println("Appuyez sur Entrée pour terminer la création des ascenseurs.");
             System.out.println("Tapez '0' pour créer un ascenseur simple.");
             System.out.println("Tapez '1' pour créer un ascenseur avec musique.");
             System.out.println("Tapez '2' pour créer un ascenseur avec vitesse.");
             System.out.println("Tapez '3' pour créer un ascenseur avec musique et vitesse.");
             try {
                 line = bufferedReader.readLine();
+                if(line.equals("")) break;
                 choixTypeAscenseur = Integer.parseInt(line);
                 switch(choixTypeAscenseur) {
+                    case 0:
+                        fabrique = new FabriqueAscenseurBasique();
+                        break;
                     case 1:
                         fabrique = new FabriqueAscenseurMusique();
                         break;
@@ -151,13 +144,14 @@ public class Application {
                         break;
                     case 3:
                         fabrique = new FabriqueAscenseurVitesseMusique();
-                        break;   
+                        break;
                     default:
-                        fabrique = new FabriqueAscenseurBasique();
+                        throw new NumberFormatException();
+
                 }
-                Controleur.getInstance().ajouterAscenseur(fabrique.creer());
+                ascenseur = fabrique.creer();
+                Controleur.getInstance().ajouterAscenseur(ascenseur);
                 System.out.println("Ascenseur " + (++i) + " crée : " + ascenseur.getLibelle());
-                
             }
             catch (IOException|NumberFormatException e) {
                 System.out.println("Erreur de saisie !");
