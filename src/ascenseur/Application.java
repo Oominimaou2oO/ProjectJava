@@ -123,6 +123,7 @@ public class Application {
 
         for (int i = 0; ;) {
             System.out.println("\nAscenseur " + (i + 1) + " : ");
+
             System.out.println("Appuyez sur Entrée pour terminer la création des ascenseurs.");
             System.out.println("Tapez '0' pour créer un ascenseur simple.");
             System.out.println("Tapez '1' pour créer un ascenseur avec musique.");
