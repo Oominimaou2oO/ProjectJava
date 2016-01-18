@@ -95,12 +95,12 @@ public class Application {
      * Exécution principale du programme.
      */
     public static void main(String[] args) {
-        IFabrique fabrique = new FabriqueAscenseurBasique();
+        IFabrique fabrique;
         Application application = new Application();
 
         String line;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        
+        int choixTypeAscenseur;
         int nombreAscenseurs;
 
         System.out.println("Initialisation");
@@ -133,8 +133,35 @@ public class Application {
 
         System.out.println("Création de " + nombreAscenseurs + " ascenseurs...");
 
-        for (int i = 0; i < nombreAscenseurs; ++i) {
-            Controleur.getInstance().ajouterAscenseur(fabrique.creer());
+        for (int i = 0; i < nombreAscenseurs;) {
+            System.out.println("Ascenseur " + (i + 1) + " : ");
+            System.out.println("Tapez '0' pour créer un ascenseur simple.");
+            System.out.println("Tapez '1' pour créer un ascenseur avec musique.");
+            System.out.println("Tapez '2' pour créer un ascenseur avec vitesse.");
+            System.out.println("Tapez '3' pour créer un ascenseur avec musique et vitesse.");
+            try {
+                line = bufferedReader.readLine();
+                choixTypeAscenseur = Integer.parseInt(line);
+                switch(choixTypeAscenseur) {
+                    case 1:
+                        fabrique = new FabriqueAscenseurMusique();
+                        break;
+                    case 2:
+                        fabrique = new FabriqueAscenseurVitesse();
+                        break;
+                    case 3:
+                        fabrique = new FabriqueAscenseurVitesseMusique();
+                        break;   
+                    default:
+                        fabrique = new FabriqueAscenseurBasique();
+                }
+                Controleur.getInstance().ajouterAscenseur(fabrique.creer());
+                System.out.println("Ascenseur " + (++i) + " crée : " + ascenseur.getLibelle());
+                
+            }
+            catch (IOException|NumberFormatException e) {
+                System.out.println("Erreur de saisie !");
+            }
         }
 
         System.out.println("Création terminé !\n");
