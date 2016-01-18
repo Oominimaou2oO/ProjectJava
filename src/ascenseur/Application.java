@@ -152,10 +152,10 @@ public class Application {
                 }
                 ascenseur = fabrique.creer();
                 Controleur.getInstance().ajouterAscenseur(ascenseur);
-                System.out.println("Ascenseur " + (++i) + " crée : " + ascenseur.getLibelle());
+                System.out.println("\nAscenseur " + (++i) + " crée : " + ascenseur.getLibelle());
             }
             catch (IOException|NumberFormatException e) {
-                System.out.println("Erreur de saisie !");
+                System.out.println("\nErreur de saisie !");
             }
         }
 

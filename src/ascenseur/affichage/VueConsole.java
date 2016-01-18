@@ -89,7 +89,8 @@ public class VueConsole implements Vue {
 				default:
 					etat = "Immobile fermé";
 			}
-			System.out.println("Ascenseur " + (i + 1));
+			System.out.println("Ascenseur " +  (i + 1) + " : " + ascenseur.getLibelle());
+            System.out.println("Etage : " + ascenseur.getEtage());
 			System.out.println("Etat : " + etat);
             int etage;
             for(;;){
